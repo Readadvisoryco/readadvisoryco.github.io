@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<!--
+=============================================================
+HOW TO GET THIS LIVE ON readadvisoryco.com
+
+OPTION A — GITHUB PAGES (free, same as Charles's page)
+1. Go to github.com/Readadvisoryco
+2. Create a new repository named: readadvisoryco.github.io
+3. Upload this file, rename it: index.html
+4. Go to Settings → Pages → Source: main branch → Save
+5. Your site is live at: readadvisoryco.github.io
+
+Then point your domain:
+6. Log into Squarespace Domains (you own readadvisoryco.com)
+7. Go to DNS Settings for readadvisoryco.com
+8. Add a CNAME record:
+   - Host: www
+   - Value: readadvisoryco.github.io
+9. Add 4 A records pointing to GitHub's IPs:
+   185.199.108.153
+   185.199.109.153
+   185.199.110.153
+   185.199.111.153
+10. Back in GitHub Pages settings, add custom domain: readadvisoryco.com
+11. Check "Enforce HTTPS"
+12. Wait 10-30 min for DNS to propagate — then live at readadvisoryco.com
+
+OPTION B — SQUARESPACE (if you prefer to stay in one place)
+1. Log into Squarespace
+2. Pages → Add Page → Code Block (or use a blank template)
+3. Paste the entire HTML into a code block
+   NOTE: Squarespace may strip some CSS — GitHub Pages is cleaner for custom HTML
+4. Domain is already connected since you own it through Squarespace
+
+RECOMMENDED: Option A — GitHub Pages. Free, fast, full control.
+=============================================================
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Read Advisory Co.</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:    #2B3A6B;
+  --navy-dk: #1a2447;
+  --gold:    #C9A86C;
+  --gold-lt: #e8d4ad;
+  --white:   #FFFFFF;
+  --off:     #F8F7F4;
+  --dark:    #0D1117;
+  --mid:     #4A5568;
+  --light:   #9AA3B2;
+  --border:  #E2E0DA;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--white);
+  color: var(--dark);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--navy-dk);
+  border-bottom: 1px solid rgba(201,168,108,0.15);
+  padding: 0 48px;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 12px;
+}
+
+.logo-box {
+  width: 48px; height: 48px;
+  background: var(--white);
+  border-radius: 50%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  flex-shrink: 0;
+  gap: 0;
+  box-shadow: 0 1px 4px rgba(43,58,107,0.12);
+}
+
+.logo-box-ra {
+  font-family: 'Cormorant', serif;
+  font-size: 17px; font-weight: 500;
+  color: var(--navy);
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+.logo-box-co {
+  font-family: 'Cormorant', serif;
+  font-size: 8px; font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 0.35em;
+  text-transform: lowercase;
+  line-height: 1;
+  margin-top: 3px;
+}
+
+.logo-text {
+  font-family: 'Cormorant', serif;
+  font-size: 17px; font-weight: 500;
+  color: var(--white);
+  letter-spacing: 0.06em;
+}
+
+.nav-right {
+  display: flex; align-items: center; gap: 32px;
+}
+
+.nav-link {
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(255,255,255,0.45); text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-link:hover { color: var(--gold); }
+
+.nav-btn {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--navy);
+  background: var(--gold);
+  padding: 10px 24px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid var(--gold);
+}
+.nav-btn:hover { background: var(--gold-lt); border-color: var(--gold-lt); }
+
+/* ── HERO */
+.hero {
+  min-height: 100vh;
+  padding: 64px 0 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  background: var(--white);
+  position: relative;
+}
+
+.hero-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 64px);
+}
+
+/* Left — dark panel */
+.hero-left {
+  background: var(--navy-dk);
+  padding: 80px 64px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-left::after {
+  content: '';
+  position: absolute;
+  bottom: -120px; right: -120px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,108,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold);
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 48px;
+}
+.hero-label::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+
+.hero-h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(44px, 5vw, 72px);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--white);
+  flex: 1;
+  display: flex; align-items: center;
+}
+
+.hero-h1 em {
+  font-style: italic;
+  color: var(--gold);
+  display: block;
+}
+
+.hero-bottom {
+  margin-top: 64px;
+}
+
+.hero-sub {
+  font-size: 15px; font-weight: 300;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 36px;
+  max-width: 420px;
+}
+
+.hero-ctas {
+  display: flex; align-items: center; gap: 20px;
+}
+
+.btn-hero {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 14px 32px;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+
+.btn-gold { background: var(--gold); color: var(--navy); }
+.btn-gold:hover { background: var(--gold-lt); transform: translateY(-2px); }
+
+.btn-ghost-white {
+  color: rgba(255,255,255,0.5);
+  font-size: 13px; font-weight: 400;
+  letter-spacing: 0.05em; text-transform: none;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 1px;
+  transition: all 0.2s;
+}
+.btn-ghost-white:hover { color: var(--white); border-color: var(--white); }
+
+/* Right — dark stat panel matching process section */
+.hero-right {
+  background: var(--dark);
+  padding: 80px 64px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  border-left: 1px solid rgba(255,255,255,0.06);
+}
+
+.hero-right-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+}
+
+.proof-number {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(56px, 6vw, 96px);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1;
+  margin: 32px 0 12px;
+}
+
+.proof-label {
+  font-size: 14px; font-weight: 300;
+  color: rgba(255,255,255,0.45); line-height: 1.6;
+  max-width: 280px;
+}
+
+.proof-divider {
+  width: 40px; height: 2px;
+  background: var(--gold);
+  margin: 32px 0;
+}
+
+.proof-quote {
+  font-family: 'Instrument Serif', serif;
+  font-size: 18px; font-style: italic;
+  line-height: 1.65;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.proof-attr {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ── MARQUEE BAND */
+.marquee-band {
+  background: var(--navy);
+  height: 48px;
+  overflow: hidden;
+  display: flex; align-items: center;
+  border-top: 1px solid rgba(201,168,108,0.2);
+}
+
+.marquee-track {
+  display: flex; gap: 0;
+  animation: marquee 24s linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-item {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  padding: 0 36px;
+  display: flex; align-items: center; gap: 36px;
+}
+
+.marquee-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+/* ── SECTIONS */
+.section { padding: 100px 48px; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+
+.section-tag {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold);
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 20px;
+}
+.section-tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+
+.section-h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--navy);
+  margin-bottom: 24px;
+}
+.section-h2 em { font-style: italic; color: var(--gold); }
+
+.section-body {
+  font-size: 16px; font-weight: 300;
+  line-height: 1.8; color: var(--mid);
+}
+
+/* ── PROBLEM SECTION */
+.problem { background: var(--white); }
+
+.problem-grid {
+  display: grid; grid-template-columns: 5fr 7fr;
+  gap: 100px; align-items: start; margin-top: 72px;
+}
+
+.problem-left { position: sticky; top: 100px; }
+.problem-left .section-body { margin-bottom: 32px; max-width: 380px; }
+
+.problem-callout {
+  border-left: 2px solid var(--gold);
+  padding: 20px 24px;
+  background: var(--off);
+}
+.problem-callout p {
+  font-family: 'Instrument Serif', serif;
+  font-size: 19px; font-style: italic;
+  line-height: 1.6; color: var(--navy);
+}
+
+.problem-right { display: flex; flex-direction: column; }
+
+.problem-item {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 24px; align-items: start;
+}
+.problem-item:first-child { padding-top: 0; }
+
+.pi-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  padding-top: 3px;
+}
+
+.pi-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 8px;
+  letter-spacing: 0.01em;
+}
+
+.pi-body {
+  font-size: 14px; font-weight: 300;
+  color: var(--mid); line-height: 1.75;
+}
+
+/* ── SYSTEM SECTION */
+.system { background: var(--off); }
+
+.system-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--border);
+  margin-top: 64px;
+}
+
+.system-card {
+  background: var(--white);
+  padding: 48px 40px;
+  transition: background 0.2s;
+}
+.system-card:hover { background: var(--navy-dk); }
+.system-card:hover .sc-num { color: rgba(201,168,108,0.3); }
+.system-card:hover .sc-title { color: var(--white); }
+.system-card:hover .sc-body { color: rgba(255,255,255,0.55); }
+.system-card:hover .sc-detail { color: var(--gold); }
+.system-card:hover .sc-detail::before { background: var(--gold); }
+
+.sc-num {
+  font-family: 'Instrument Serif', serif;
+  font-size: 56px; font-weight: 400;
+  color: rgba(43,58,107,0.1);
+  line-height: 1;
+  margin-bottom: 24px;
+  transition: color 0.2s;
+}
+
+.sc-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 0.02em;
+  margin-bottom: 14px;
+  transition: color 0.2s;
+}
+
+.sc-body {
+  font-size: 14px; font-weight: 300;
+  color: var(--mid); line-height: 1.75;
+  margin-bottom: 24px;
+  transition: color 0.2s;
+}
+
+.sc-detail {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--light);
+  display: flex; align-items: center; gap: 8px;
+  transition: color 0.2s;
+}
+.sc-detail::before {
+  content: ''; width: 16px; height: 1px;
+  background: var(--light); flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+/* ── PROCESS SECTION */
+.process { background: var(--navy-dk); }
+.process .section-h2 { color: var(--white); }
+.process .section-body { color: rgba(255,255,255,0.5); }
+
+.process-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  margin-top: 64px;
+}
+
+.ps-item {
+  background: var(--navy-dk);
+  padding: 40px 32px;
+  transition: background 0.2s;
+}
+.ps-item:hover { background: rgba(255,255,255,0.03); }
+
+.ps-step {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 8px;
+}
+.ps-step::after {
+  content: '';
+  flex: 1; height: 1px;
+  background: rgba(201,168,108,0.2);
+}
+
+.ps-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--white);
+  margin-bottom: 12px;
+  letter-spacing: 0.01em;
+}
+
+.ps-body {
+  font-size: 13px; font-weight: 300;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.75;
+}
+
+/* ── PRICING */
+.pricing { background: var(--white); }
+
+.pricing-intro {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: end;
+  margin-bottom: 56px;
+}
+
+.value-line {
+  font-family: 'Instrument Serif', serif;
+  font-size: 20px; font-style: italic;
+  color: var(--mid); line-height: 1.5;
+  border-left: 2px solid var(--gold);
+  padding-left: 20px;
+  margin-top: 16px;
+}
+
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; background: var(--border);
+}
+
+.pc {
+  background: var(--white);
+  padding: 44px 36px;
+  position: relative;
+  display: flex; flex-direction: column;
+}
+
+.pc.featured { background: var(--navy-dk); }
+
+.pc-badge {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--navy); background: var(--gold);
+  padding: 4px 12px;
+  display: inline-block; margin-bottom: 20px;
+  align-self: flex-start;
+}
+
+.pc-tier {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 4px;
+}
+
+.pc-duration {
+  font-size: 12px; font-weight: 300;
+  color: var(--light); margin-bottom: 28px;
+}
+.pc.featured .pc-duration { color: rgba(255,255,255,0.35); }
+
+.pc-price {
+  font-family: 'Instrument Serif', serif;
+  font-size: 52px; font-weight: 400;
+  color: var(--navy); line-height: 1;
+  margin-bottom: 4px;
+}
+.pc.featured .pc-price { color: var(--white); }
+
+.pc-billing {
+  font-size: 12px; color: var(--light);
+  margin-bottom: 28px;
+}
+.pc.featured .pc-billing { color: rgba(255,255,255,0.3); }
+
+.pc-line {
+  height: 1px; background: var(--border);
+  margin-bottom: 24px;
+}
+.pc.featured .pc-line { background: rgba(255,255,255,0.08); }
+
+.pc-features {
+  list-style: none; flex: 1; margin-bottom: 32px;
+}
+.pc-features li {
+  font-size: 13px; font-weight: 300;
+  color: var(--mid); padding: 8px 0;
+  border-bottom: 1px solid rgba(226,224,218,0.5);
+  display: flex; gap: 10px;
+  line-height: 1.5;
+}
+.pc.featured .pc-features li { color: rgba(255,255,255,0.6); border-color: rgba(255,255,255,0.06); }
+.pc-features li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+
+.pc-btn {
+  display: block; text-align: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 13px 20px; text-decoration: none;
+  transition: all 0.2s;
+  margin-top: auto;
+}
+.pc-btn-outline { border: 1px solid var(--navy); color: var(--navy); }
+.pc-btn-outline:hover { background: var(--navy); color: var(--white); }
+.pc-btn-fill { background: var(--gold); color: var(--navy); }
+.pc-btn-fill:hover { background: var(--gold-lt); transform: translateY(-1px); }
+
+.addon-strip {
+  background: var(--off);
+  border: 1px solid var(--border);
+  padding: 20px 28px;
+  margin-top: 2px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap;
+}
+.addon-tag {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 6px;
+}
+.addon-list { display: flex; gap: 28px; flex-wrap: wrap; }
+.addon-item { font-size: 13px; font-weight: 300; color: var(--mid); }
+.addon-item strong { font-weight: 500; color: var(--dark); }
+
+.value-note-strip {
+  text-align: center; margin-top: 28px;
+  font-family: 'Instrument Serif', serif;
+  font-size: 18px; font-style: italic;
+  color: var(--navy);
+}
+.value-note-strip em { color: var(--gold); font-style: normal; }
+
+/* ── SIMPLE PRICING */
+.simple-pricing-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; background: var(--border);
+  margin-top: 56px;
+}
+
+.sp-card {
+  background: var(--white);
+  padding: 48px 40px;
+  display: flex; flex-direction: column;
+  transition: background 0.2s;
+}
+.sp-card:hover { background: var(--off); }
+.sp-card.sp-featured { background: var(--navy-dk); }
+.sp-card.sp-featured:hover { background: #1e2d55; }
+
+.sp-badge {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--navy); background: var(--gold);
+  padding: 4px 12px;
+  display: inline-block; margin-bottom: 20px;
+  align-self: flex-start;
+}
+
+.sp-tier {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 16px;
+}
+
+.sp-price {
+  font-family: 'Instrument Serif', serif;
+  font-size: 60px; font-weight: 400;
+  color: var(--navy); line-height: 1;
+  margin-bottom: 8px;
+}
+.sp-featured .sp-price { color: var(--white); }
+
+.sp-duration {
+  font-size: 12px; font-weight: 300;
+  color: var(--light); margin-bottom: 24px;
+  letter-spacing: 0.04em;
+}
+.sp-featured .sp-duration { color: rgba(255,255,255,0.35); }
+
+.sp-desc {
+  font-size: 14px; font-weight: 300;
+  color: var(--mid); line-height: 1.75;
+  flex: 1; margin-bottom: 36px;
+}
+.sp-featured .sp-desc { color: rgba(255,255,255,0.55); }
+
+.sp-btn {
+  display: block; text-align: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 14px 20px; text-decoration: none;
+  transition: all 0.2s; margin-top: auto;
+}
+.sp-btn-outline { border: 1px solid var(--navy); color: var(--navy); }
+.sp-btn-outline:hover { background: var(--navy); color: var(--white); }
+.sp-btn-gold { background: var(--gold); color: var(--navy); }
+.sp-btn-gold:hover { background: var(--gold-lt); transform: translateY(-1px); }
+
+.sp-footer-note {
+  text-align: center; margin-top: 32px;
+  font-size: 14px; font-weight: 300;
+  color: var(--mid); line-height: 1.6;
+}
+.sp-footer-note a {
+  color: var(--navy); font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 1px;
+  transition: color 0.2s;
+}
+.sp-footer-note a:hover { color: var(--gold); }
+
+/* ── ABOUT */
+.about { background: var(--off); }
+
+.about-grid {
+  display: grid; grid-template-columns: 7fr 5fr;
+  gap: 80px; align-items: start; margin-top: 64px;
+}
+
+.about-body { font-size: 16px; font-weight: 300; color: var(--mid); line-height: 1.85; margin-bottom: 20px; }
+
+.about-sig {
+  margin-top: 36px; display: flex; align-items: center; gap: 14px;
+}
+.sig-mark { width: 28px; height: 2px; background: var(--gold); }
+.sig-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px; font-weight: 700;
+  color: var(--navy); letter-spacing: 0.02em;
+}
+.sig-role { font-size: 12px; color: var(--light); margin-top: 2px; }
+
+.about-right {
+  background: var(--navy-dk);
+  padding: 44px 40px;
+  position: sticky; top: 100px;
+}
+
+.about-quote-mark {
+  font-family: 'Instrument Serif', serif;
+  font-size: 80px; line-height: 1;
+  color: rgba(201,168,108,0.15);
+  margin-bottom: -12px;
+  display: block;
+}
+
+.about-quote {
+  font-family: 'Instrument Serif', serif;
+  font-size: 19px; font-style: italic;
+  line-height: 1.7; color: var(--white);
+  margin-bottom: 24px;
+}
+
+.about-quote-attr {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ── CTA */
+.cta-section {
+  background: var(--navy-dk);
+  padding: 120px 48px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+
+.cta-section::before {
+  content: 'READ\AADVISORY\ACO.';
+  white-space: pre;
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(80px, 12vw, 160px);
+  font-weight: 800; line-height: 0.9;
+  color: rgba(255,255,255,0.02);
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.cta-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+
+.cta-tag {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold);
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  margin-bottom: 28px;
+}
+.cta-tag::before, .cta-tag::after { content: ''; width: 28px; height: 1px; background: var(--gold); }
+
+.cta-h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 400; line-height: 1.1;
+  color: var(--white); margin-bottom: 20px;
+}
+.cta-h2 em { font-style: italic; color: var(--gold); }
+
+.cta-sub {
+  font-size: 16px; font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.75; margin-bottom: 44px;
+}
+
+.cta-note {
+  margin-top: 16px;
+  font-size: 12px; color: rgba(255,255,255,0.25);
+  font-style: italic;
+}
+
+/* ── FOOTER */
+footer {
+  background: var(--dark);
+  padding: 28px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px;
+}
+
+.footer-logo {
+  display: flex; align-items: center; gap: 10px;
+}
+.footer-logo-box {
+  width: 40px; height: 40px;
+  background: var(--white);
+  border-radius: 50%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 0;
+}
+.footer-logo-box .logo-box-ra {
+  font-family: 'Cormorant', serif;
+  font-size: 14px; font-weight: 500;
+  color: var(--navy); line-height: 1;
+  letter-spacing: 0.08em;
+}
+.footer-logo-box .logo-box-co {
+  font-family: 'Cormorant', serif;
+  font-size: 7px; font-weight: 400;
+  color: var(--gold); letter-spacing: 0.35em;
+  text-transform: lowercase; line-height: 1;
+  margin-top: 2px;
+}
+.footer-logo-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px; font-weight: 600;
+  color: rgba(255,255,255,0.4);
+}
+
+.footer-links { display: flex; gap: 24px; }
+.footer-links a {
+  font-size: 11px; color: rgba(255,255,255,0.25);
+  text-decoration: none; letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--gold); }
+
+/* ── ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+.d1 { animation-delay: 0.1s; }
+.d2 { animation-delay: 0.25s; }
+.d3 { animation-delay: 0.4s; }
+.d4 { animation-delay: 0.55s; }
+
+/* ── RESPONSIVE */
+@media (max-width: 960px) {
+  nav { padding: 0 24px; }
+  .nav-right .nav-link { display: none; }
+  .hero-main { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { min-height: calc(100vh - 64px); padding: 60px 32px; }
+  .section { padding: 72px 24px; }
+  .problem-grid { grid-template-columns: 1fr; gap: 48px; }
+  .problem-left { position: static; }
+  .system-grid { grid-template-columns: 1fr; }
+  .process-steps { grid-template-columns: 1fr 1fr; }
+  .pricing-intro { grid-template-columns: 1fr; gap: 32px; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .simple-pricing-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-right { position: static; }
+  .cta-section { padding: 80px 24px; }
+  footer { padding: 24px; flex-direction: column; text-align: center; }
+  .footer-links { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo fade d1">
+    <div class="logo-box"><span class="logo-box-ra">RA</span><span class="logo-box-co">co</span></div>
+    <div class="logo-text">Read Advisory Co.</div>
+  </div>
+  <div class="nav-right fade d2">
+    <a href="#system" class="nav-link">What We Build</a>
+    <a href="#pricing" class="nav-link">Pricing</a>
+    <a href="#about" class="nav-link">About</a>
+    <a href="#book" class="nav-btn">Book a Call</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-main">
+
+    <div class="hero-left">
+      <div class="hero-label fade d1">Trust Infrastructure · Financial Advisors</div>
+      <div class="hero-h1 fade d2">
+        <div>
+          Your clients<br>
+          trust you<br>
+          completely.<br>
+          <em>Your presence<br>should too.</em>
+        </div>
+      </div>
+      <div class="hero-bottom fade d3">
+        <p class="hero-sub">We build the online presence independent financial advisors deserve — in their own voice, aligned across every touchpoint, running in the background while they focus on clients.</p>
+        <div class="hero-ctas">
+          <a href="#book" class="btn-hero btn-gold">Book a Free Call</a>
+          <a href="#system" class="btn-ghost-white">See what we build →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right fade d4">
+      <div class="hero-right-label">Proof of concept</div>
+      <div>
+        <div class="proof-number">Day 1</div>
+        <div class="proof-label">Meeting booked the same day as the first authentic post. The prospect had already decided before reaching out.</div>
+      </div>
+      <div>
+        <div class="proof-divider"></div>
+        <div class="proof-quote">"We worked with an advisor who posted his first real piece of content — his own words, his own perspective. He booked a meeting the same day."</div>
+        <div class="proof-attr">Christopher Read · Founder</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="marquee-band">
+    <div class="marquee-track">
+      <div class="marquee-item">LinkedIn Presence <span class="marquee-dot"></span> Client Newsletter <span class="marquee-dot"></span> Referral Landing Page <span class="marquee-dot"></span> Voice Capture <span class="marquee-dot"></span> Done For You <span class="marquee-dot"></span> Independent Advisors <span class="marquee-dot"></span> Trust Infrastructure <span class="marquee-dot"></span></div>
+      <div class="marquee-item">LinkedIn Presence <span class="marquee-dot"></span> Client Newsletter <span class="marquee-dot"></span> Referral Landing Page <span class="marquee-dot"></span> Voice Capture <span class="marquee-dot"></span> Done For You <span class="marquee-dot"></span> Independent Advisors <span class="marquee-dot"></span> Trust Infrastructure <span class="marquee-dot"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem section">
+  <div class="section-inner">
+    <div class="problem-grid">
+      <div class="problem-left">
+        <div class="section-tag">The problem</div>
+        <h2 class="section-h2">Good advisors.<br><em>Presence that<br>does not match.</em></h2>
+        <p class="section-body">When a referral gets your name, they look you up. In thirty seconds they form an opinion. Most advisor profiles cannot answer the one question that matters.</p>
+        <div class="problem-callout">
+          <p>"Does this feel like someone I can trust?"</p>
+        </div>
+      </div>
+      <div class="problem-right">
+        <div class="problem-item">
+          <div class="pi-num">01</div>
+          <div>
+            <div class="pi-title">LinkedIn feels stale or generic</div>
+            <div class="pi-body">Market commentary and posts from months ago. Nothing that sounds like the specific person their colleague trusted enough to refer. The referral keeps scrolling.</div>
+          </div>
+        </div>
+        <div class="problem-item">
+          <div class="pi-num">02</div>
+          <div>
+            <div class="pi-title">The newsletter sounds like someone else</div>
+            <div class="pi-body">If it exists at all, it reads like a template. No voice. No personality. Nothing that deepens a relationship or gives a client something worth forwarding.</div>
+          </div>
+        </div>
+        <div class="problem-item">
+          <div class="pi-num">03</div>
+          <div>
+            <div class="pi-title">No place to send a warm referral</div>
+            <div class="pi-body">The advisor gets a name dropped — and there is nowhere for that person to land and feel confident before they decide whether to reach out.</div>
+          </div>
+        </div>
+        <div class="problem-item">
+          <div class="pi-num">04</div>
+          <div>
+            <div class="pi-title">Everything says something different</div>
+            <div class="pi-body">LinkedIn, newsletter, website — three touchpoints, three tones, zero coherence. The gap is invisible to the advisor. To the referral, it is everything.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SYSTEM -->
+<section class="system section" id="system">
+  <div class="section-inner">
+    <div class="section-tag">What we build</div>
+    <h2 class="section-h2">Three layers.<br>One voice. <em>One system.</em></h2>
+    <p class="section-body" style="max-width:560px">Every touchpoint aligned, every word in your voice, running consistently in the background. Done for you. Every month.</p>
+    <div class="system-grid">
+      <div class="system-card">
+        <div class="sc-num">01</div>
+        <div class="sc-title">LinkedIn Presence</div>
+        <div class="sc-body">8 posts per month, twice a week, written in your voice. Not market updates. Not templates. Your stories, your experience, your honest point of view — consistently showing up for the clients you want to attract.</div>
+        <div class="sc-detail">8 posts · 2x per week</div>
+      </div>
+      <div class="system-card">
+        <div class="sc-num">02</div>
+        <div class="sc-title">Client Newsletter</div>
+        <div class="sc-body">Monthly or quarterly. Deepens trust with existing clients and gives them something worth forwarding. The best referral tool most advisors never use properly — because it has never sounded like them.</div>
+        <div class="sc-detail">Monthly or quarterly</div>
+      </div>
+      <div class="system-card">
+        <div class="sc-num">03</div>
+        <div class="sc-title">Referral Landing Page</div>
+        <div class="sc-body">A clean, personal page at your own domain. When a referral gets your name, this is where they land. It makes the case for you before the first conversation ever happens.</div>
+        <div class="sc-detail">Live at your domain</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process section">
+  <div class="section-inner">
+    <div class="section-tag">How it works</div>
+    <h2 class="section-h2" style="color:var(--white)">Simple process.<br><em>Done for you.</em></h2>
+    <p class="section-body" style="max-width:480px">You do not write anything, manage anything, or think about it. One call — everything is handled from there.</p>
+    <div class="process-steps">
+      <div class="ps-item">
+        <div class="ps-step">Step 01</div>
+        <div class="ps-title">Discovery Call</div>
+        <div class="ps-body">60 minutes capturing your voice — your stories, your experience, how you actually talk about planning. You never have to write anything.</div>
+      </div>
+      <div class="ps-item">
+        <div class="ps-step">Step 02</div>
+        <div class="ps-title">We Build Everything</div>
+        <div class="ps-body">LinkedIn posts, newsletter, and referral page built from your call. Delivered within one week, formatted and ready to publish.</div>
+      </div>
+      <div class="ps-item">
+        <div class="ps-step">Step 03</div>
+        <div class="ps-title">Monthly Delivery</div>
+        <div class="ps-body">Fresh content every month, aligned with your focus. You review, we refine, you post. That is the entire process.</div>
+      </div>
+      <div class="ps-item">
+        <div class="ps-step">Step 04</div>
+        <div class="ps-title">It Compounds</div>
+        <div class="ps-body">Month by month your presence builds. Referrals arrive warmer. The right clients feel like they already know you before they ever reach out.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing section" id="pricing">
+  <div class="section-inner">
+    <div class="pricing-intro">
+      <div>
+        <div class="section-tag">Pricing</div>
+        <h2 class="section-h2">Straightforward.<br><em>No surprises.</em></h2>
+      </div>
+      <div>
+        <p class="section-body">Every plan includes LinkedIn posts, newsletter, and referral landing page — all in your voice, done for you, every month.</p>
+        <div class="value-line">One new client pays for an entire year. That is the math.</div>
+      </div>
+    </div>
+
+    <div class="simple-pricing-grid">
+      <div class="sp-card">
+        <div class="sp-tier">Core</div>
+        <div class="sp-price">$1,000</div>
+        <div class="sp-duration">1 month · Start here</div>
+        <div class="sp-desc">The complete first month — voice captured, presence built, everything formatted and ready to publish.</div>
+        <a href="https://calendar.app.google/CmPUeyw5xo1ai2KE8" class="sp-btn sp-btn-outline">Book a Call</a>
+      </div>
+      <div class="sp-card sp-featured">
+        <div class="sp-badge">Best Value</div>
+        <div class="sp-tier">Growth</div>
+        <div class="sp-price">$2,850</div>
+        <div class="sp-duration">3 months · Most popular</div>
+        <div class="sp-desc">Three months to build real momentum. Referral Trust Page and newsletter included. Strategy call in month one.</div>
+        <a href="https://calendar.app.google/CmPUeyw5xo1ai2KE8" class="sp-btn sp-btn-gold">Book a Call</a>
+      </div>
+      <div class="sp-card">
+        <div class="sp-tier">Full System</div>
+        <div class="sp-price">$5,300</div>
+        <div class="sp-duration">6 months · Full partnership</div>
+        <div class="sp-desc">The complete trust infrastructure — LinkedIn, newsletter, referral system, events, community presence, and quarterly strategy calls.</div>
+        <a href="https://calendar.app.google/CmPUeyw5xo1ai2KE8" class="sp-btn sp-btn-outline">Book a Call</a>
+      </div>
+    </div>
+
+    <div class="sp-footer-note">
+      Not sure which is right for your practice? <a href="https://calendar.app.google/CmPUeyw5xo1ai2KE8">Book a free 15-minute call</a> and we will tell you honestly.
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about section" id="about">
+  <div class="section-inner">
+    <div class="section-tag">Why we exist</div>
+    <h2 class="section-h2">Built from a<br><em>real relationship.</em></h2>
+    <div class="about-grid">
+      <div class="about-left">
+        <p class="about-body">I have a close friend who is a financial advisor. We talk all the time — about his business, his clients, the challenges of growing a practice when you are also serving the people you already have.</p>
+        <p class="about-body">At some point I realized I could help. Not by telling him what to post — but by capturing how he actually thinks and talks about financial planning, and building a presence that put that into the world consistently.</p>
+        <p class="about-body">The more consistently he got his message out, the easier it became for the right people to find him, trust him, and want to reach out. That is what we build for every advisor we work with.</p>
+        <div class="about-sig">
+          <div class="sig-mark"></div>
+          <div>
+            <div class="sig-name">Christopher Read</div>
+            <div class="sig-role">Founder · Read Advisory Co. · Denver, CO</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-right">
+        <span class="about-quote-mark">&ldquo;</span>
+        <div class="about-quote">I felt like I could help my advisor grow his business. The more consistently he gets his message out — to his clients, to people who might become clients — the easier it becomes for the right people to find him and want to connect. I figured I could help. And this is what I saw.</div>
+        <div class="about-quote-attr">Christopher Read · Founder</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="book">
+  <div class="cta-inner">
+    <div class="cta-tag">Get started</div>
+    <h2 class="cta-h2">Let's see what this<br>looks like for <em>your practice.</em></h2>
+    <p class="cta-sub">Book a free 15-minute call. We will look at your current presence, identify where the gaps are, and tell you honestly whether we are a good fit.</p>
+    <a href="https://calendar.app.google/CmPUeyw5xo1ai2KE8" class="btn-hero btn-gold" style="font-size:13px;padding:16px 44px">Book a Free 15-Minute Call</a>
+    <div class="cta-note">No pitch. No pressure. Just an honest conversation.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="footer-logo-box"><span class="logo-box-ra">RA</span><span class="logo-box-co">co</span></div>
+    <div class="footer-logo-text">Read Advisory Co.</div>
+  </div>
+  <div class="footer-links">
+    <a href="#system">What We Build</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#book">Book a Call</a>
+    <a href="/cdn-cgi/l/email-protection#8fece7fde6fccffdeaeeebeeebf9e6fce0fdf6ece0a1ece0e2"><span class="__cf_email__" data-cfemail="b9dad1cbd0caf9cbdcd8ddd8ddcfd0cad6cbc0dad697dad6d4">[email&#16
