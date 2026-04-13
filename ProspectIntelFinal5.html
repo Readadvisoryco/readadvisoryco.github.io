@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prospect Intel — Read Advisory Co.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f2f0ec;--white:#fff;--navy:#2B3A6B;--navy-dark:#1a2540;
+  --gold:#C9A86C;--gold-light:#dfc08a;
+  --text:#1a2540;--text2:#5a6070;--text3:#9199a8;
+  --border:rgba(26,37,64,0.12);
+  --nt:#fff;--nt2:rgba(255,255,255,0.7);--nt3:rgba(255,255,255,0.4);
+  --ng:rgba(201,168,108,0.4);--ni:rgba(255,255,255,0.06);
+}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}
+.header{background:var(--white);padding:20px 40px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.logo{width:32px;height:32px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--gold)}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-name{font-size:12px;color:var(--text2);letter-spacing:.1em;text-transform:uppercase}
+.tag{font-size:12px;color:var(--text3);letter-spacing:.06em;text-transform:uppercase}
+.main{max-width:700px;margin:0 auto;padding:50px 40px 80px}
+h1{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:400;line-height:1.15;margin-bottom:10px}
+h1 em{color:var(--navy);font-style:italic}
+.sub{font-size:14px;color:var(--text2);line-height:1.65;margin-bottom:36px;font-weight:300;max-width:440px}
+.card{background:var(--navy);padding:36px;margin-bottom:28px}
+.label{display:block;font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+input{width:100%;background:var(--ni);border:1px solid var(--ng);color:var(--nt);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;padding:12px 14px;outline:none;margin-bottom:20px;transition:border-color .2s}
+input::placeholder{color:var(--nt3)}
+input:focus{border-color:var(--gold)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid input{margin-bottom:0}
+.btn{width:100%;margin-top:20px;padding:14px;background:var(--gold);color:var(--navy-dark);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s}
+.btn:hover:not(:disabled){background:var(--gold-light)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.status{display:none;align-items:center;gap:12px;padding:13px 18px;background:var(--white);border:1px solid var(--border);margin-bottom:24px;font-size:13px;color:var(--navy)}
+.status.on{display:flex}
+.spin{width:14px;height:14px;border:1.5px solid rgba(43,58,107,.2);border-top-color:var(--navy);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.err{display:none;padding:13px 18px;background:#fff5f5;border:1px solid #f0a0a0;font-size:13px;color:#a33030;margin-bottom:20px}
+.err.on{display:block}
+.out{display:none}
+.out.on{display:block}
+.disc{background:#fffbf0;border:1px solid rgba(201,168,108,.35);padding:12px 20px;font-size:12px;color:#7a6030;line-height:1.55;font-weight:300;margin-bottom:2px}
+.bh{background:var(--white);border:1px solid var(--border);padding:26px 30px;margin-bottom:2px}
+.eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:8px}
+.bname{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--text);margin-bottom:4px}
+.bmeta{font-size:13px;color:var(--text2);font-weight:300}
+.sec{background:var(--white);border:1px solid var(--border);padding:24px 30px;margin-bottom:2px}
+.sec:last-of-type{margin-bottom:0}
+.shead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.snum{width:18px;height:18px;background:var(--navy);color:var(--gold);font-size:9px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.slabel{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);font-weight:500}
+.stitle{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:var(--text);margin-bottom:10px}
+.sbody{font-size:14px;line-height:1.75;color:var(--text2);font-weight:300}
+.angle{background:var(--navy);border-color:var(--navy)}
+.angle .snum{background:rgba(255,255,255,.1)}
+.angle .slabel{color:var(--nt3)}
+.angle .stitle{color:var(--gold)}
+.angle .sbody{color:var(--nt2)}
+.starters{list-style:none}
+.starters li{font-size:14px;color:var(--text2);line-height:1.65;padding:10px 0 10px 16px;border-bottom:1px solid var(--border);font-weight:300;position:relative}
+.starters li:last-child{border-bottom:none;padding-bottom:0}
+.starters li:first-child{padding-top:0}
+.starters li::before{content:'';position:absolute;left:0;top:18px;width:5px;height:1px;background:var(--navy)}
+.starters li:first-child::before{top:7px}
+.blist{list-style:none;padding:0}
+.blist li{font-size:14px;color:var(--text2);line-height:1.65;padding:9px 0 9px 20px;border-bottom:1px solid var(--border);font-weight:300;position:relative}
+.blist li:last-child{border-bottom:none;padding-bottom:0}
+.blist li:first-child{padding-top:0}
+.blist li::before{content:'';position:absolute;left:0;top:17px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.blist li:first-child::before{top:6px}
+.angle .blist li{border-bottom-color:rgba(255,255,255,0.1);color:var(--nt2)}
+.angle .blist li::before{background:var(--gold)}
+.actions{display:flex;gap:12px;margin-top:20px}
+.btn-dl{padding:12px 22px;background:var(--navy);color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s}
+.btn-dl:hover{background:var(--navy-dark)}
+.btn-new{padding:12px 20px;background:transparent;color:var(--text3);font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(26,37,64,.18);cursor:pointer;transition:color .2s}
+.btn-new:hover{color:var(--text)}
+.footer{padding:18px 40px;border-top:1px solid var(--border);background:var(--white);font-size:11px;color:var(--text3);letter-spacing:.06em}
+@media print{
+  .header,.footer,.card,.status,.err,.actions,h1,.sub{display:none!important}
+  body{background:#fff}
+  .out{display:block!important}
+  .angle{background:var(--navy)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+@media(max-width:600px){
+  .main{padding:32px 20px 60px}.header{padding:18px 20px}
+  .card{padding:24px 20px}.grid{grid-template-columns:1fr}
+  h1{font-size:28px}.bh,.sec{padding:18px 20px}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="brand">
+    <div class="logo">R</div>
+    <span class="brand-name">Read Advisory Co.</span>
+  </div>
+  <span class="tag">Prospect Intel</span>
+</header>
+
+<main class="main">
+  <h1>Know your prospect<br><em>before you walk in.</em></h1>
+  <p class="sub">Enter a name and LinkedIn URL before your next meeting. Get a one-page prep brief in under 60 seconds. Internal use only.</p>
+
+  <div class="card" id="formCard">
+    <label class="label" for="pname">Prospect name</label>
+    <input type="text" id="pname" placeholder="First and last name" autocomplete="off">
+    <label class="label" for="purl">LinkedIn URL</label>
+    <input type="url" id="purl" placeholder="https://linkedin.com/in/..." autocomplete="off">
+    <div class="grid">
+      <div>
+        <label class="label" for="pco">Company</label>
+        <input type="text" id="pco" placeholder="Optional" autocomplete="off">
+      </div>
+      <div>
+        <label class="label" for="pdate">Meeting date</label>
+        <input type="text" id="pdate" placeholder="e.g. April 18" autocomplete="off">
+      </div>
+    </div>
+    <button class="btn" id="genBtn" onclick="run()">Generate brief</button>
+  </div>
+
+  <div class="status" id="status"><div class="spin"></div><span id="stxt">Researching prospect...</span></div>
+  <div class="err" id="err"></div>
+  <div class="out" id="out"></div>
+  <div class="actions" id="actions" style="display:none">
+    <button class="btn-dl" onclick="window.print()">Download PDF</button>
+    <button class="btn-new" onclick="reset()">New brief</button>
+  </div>
+</main>
+
+<footer class="footer">Read Advisory Co. &nbsp;·&nbsp; Internal use only &nbsp;·&nbsp; readadvisoryco.com</footer>
+
+<script>
+var KEY = 'sk-ant-api03-CMbOa-15rd27iOZ3d'+'MtQb5zHpEOUKcCHtS3ALtFMwSgNSio'+'-4264TT9CzbVq-QAH-yXTFVMT1uEeknNWhmUvlg-PK6ClwAA';
+
+var SYS = 'You are a pre-meeting research assistant for Charles Floeckher, an independent financial advisor in Marblehead, MA. Charles already has a first meeting booked with this prospect. He does not need outreach tips. He needs to walk into that meeting prepared — knowing who he is sitting across from, what that person likely cares about, and how to make the first conversation feel like Charles did his homework. Research the prospect using web search. Use only publicly available professional information. No citation tags. Return exactly this JSON structure and nothing else: {"snapshot":["Their current role, firm, and how long they have been there","One defining career fact — previous firm, background, or notable move","One personal or community signal if publicly available, otherwise a second professional fact"],"world":["What is happening at their company or in their industry right now","Any recent change, news, or signal in their professional life","The broader context they are operating in — market, economic, or industry pressure"],"cares":["Their most likely financial priority right now based on their role and life stage","What they probably worry about that Charles can help with","One thing Charles can reference that shows he understands their world"],"starters":["A specific first question Charles can ask that shows he did his homework","A second question that opens up their goals or concerns naturally","A third question that moves toward understanding what a good outcome looks like for them"],"angle":["How Charles should open this meeting and set the tone","What to listen for in the first five minutes","Fit assessment — strong fit, possible fit, or unclear and what to probe"]} Every value must be an array of exactly 3 strings. No markdown. No citation tags. Parseable by JSON.parse().';
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+async function run(){
+  var name=document.getElementById('pname').value.trim();
+  var url=document.getElementById('purl').value.trim();
+  var co=document.getElementById('pco').value.trim();
+  var dt=document.getElementById('pdate').value.trim();
+  if(!name){showErr('Please enter a prospect name.');return;}
+  clearErr();load(true);
+  try{
+    var r=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':KEY,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYS,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:'Prospect: '+name+'\nLinkedIn: '+(url||'not provided')+'\nCompany: '+(co||'not provided')+'\nMeeting: '+(dt||'not specified')+'\nBuild the brief.'}]})
+    });
+    var d=await r.json();
+    if(!r.ok)throw new Error(d.error&&d.error.message||'API error');
+    var txt=d.content.filter(function(b){return b.type==='text'}).map(function(b){return b.text}).join('');
+    var clean=txt.replace(/```json|```/g,'').replace(/<cite[^>]*>/g,'').replace(/<\/cite>/g,'').trim();
+    var jsonMatch=clean.match(/\{[\s\S]*\}/);
+    if(!jsonMatch)throw new Error('No brief returned. Try again.');
+    var brief=JSON.parse(jsonMatch[0]);
+    render(name,co,dt,brief);
+  }catch(e){showErr('Error: '+e.message);}
+  finally{load(false);}
+}
+
+function render(name,co,dt,b){
+  var meta=[co,dt?'Meeting: '+dt:null].filter(Boolean).join(' · ');
+  var today=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  var sl=(b.starters||[]).map(function(s){return '<li>'+esc(s)+'</li>';}).join('');
+  function bullets(arr){
+    if(!arr||!arr.length)return '';
+    if(typeof arr==='string')arr=[arr];
+    return '<ul class="blist">'+arr.map(function(s){return '<li>'+esc(s)+'</li>';}).join('')+'</ul>';
+  }
+  document.getElementById('out').innerHTML=
+    '<div class="disc">Internal use only. Generated from public information. May be incomplete or inaccurate — verify before acting on any detail.</div>'+
+    '<div class="bh"><div class="eyebrow">Pre-Meeting Brief &nbsp;·&nbsp; '+esc(today)+'</div><div class="bname">'+esc(name)+'</div>'+(meta?'<div class="bmeta">'+esc(meta)+'</div>':'')+'</div>'+
+    '<div class="sec"><div class="shead"><div class="snum">1</div><span class="slabel">Snapshot</span></div><div class="stitle">Who they are</div>'+bullets(b.snapshot)+'</div>'+
+    '<div class="sec"><div class="shead"><div class="snum">2</div><span class="slabel">Their World Right Now</span></div><div class="stitle">Context &amp; current signals</div>'+bullets(b.world)+'</div>'+
+    '<div class="sec"><div class="shead"><div class="snum">3</div><span class="slabel">What They Likely Care About</span></div><div class="stitle">Where their attention is</div>'+bullets(b.cares)+'</div>'+
+    '<div class="sec"><div class="shead"><div class="snum">4</div><span class="slabel">Conversation Starters</span></div><div class="stitle">Ways in</div><ul class="starters">'+sl+'</ul></div>'+
+    '<div class="sec angle"><div class="shead"><div class="snum">5</div><span class="slabel">The Angle</span></div><div class="stitle">How to approach this</div>'+bullets(b.angle)+'</div>';
+  document.getElementById('out').classList.add('on');
+  document.getElementById('actions').style.display='flex';
+  document.getElementById('formCard').style.display='none';
+}
+
+function load(on){
+  document.getElementById('genBtn').disabled=on;
+  document.getElementById('genBtn').textContent=on?'Researching...':'Generate brief';
+  document.getElementById('status').classList.toggle('on',on);
+  if(on){
+    var msgs=['Researching prospect...','Scanning public signals...','Building your brief...','Almost ready...'];
+    var i=0;clearInterval(window._t);
+    window._t=setInterval(function(){document.getElementById('stxt').textContent=msgs[++i%msgs.length];},3200);
+  }else clearInterval(window._t);
+}
+
+function showErr(m){var e=document.getElementById('err');e.textContent=m;e.classList.add('on');}
+function clearErr(){document.getElementById('err').classList.remove('on');}
+function reset(){
+  document.getElementById('out').classList.remove('on');
+  document.getElementById('out').innerHTML='';
+  document.getElementById('actions').style.display='none';
+  document.getElementById('formCard').style.display='block';
+  ['pname','purl','pco','pdate'].forEach(function(id){document.getElementById(id).value='';});
+  clearErr();clearInterval(window._t);
+}
+</script>
+</body>
+</html>
