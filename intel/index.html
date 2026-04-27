@@ -16,6 +16,9 @@
   --ng:rgba(201,168,108,0.4);--ni:rgba(255,255,255,0.06);
   --warn-bg:#fffbf0;--warn-border:rgba(201,168,108,0.35);--warn-text:#7a6030;
   --gap-bg:#f7f6f2;--gap-border:rgba(26,37,64,0.18);--gap-text:#7a8090;
+  --tom-bg:#f4ede0;--tom-border:#C9A86C;
+  --land-bg:#fdf3f0;--land-border:#c97a5c;--land-text:#7a3220;
+  --phase-bg:#eef2f8;--phase-border:#2B3A6B;
 }
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}
 .header{background:var(--white);padding:20px 40px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
@@ -23,7 +26,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .brand{display:flex;align-items:center;gap:12px}
 .brand-name{font-size:12px;color:var(--text2);letter-spacing:.1em;text-transform:uppercase}
 .tag{font-size:12px;color:var(--text3);letter-spacing:.06em;text-transform:uppercase}
-.main{max-width:700px;margin:0 auto;padding:50px 40px 80px}
+.main{max-width:760px;margin:0 auto;padding:50px 40px 80px}
 h1{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:400;line-height:1.15;margin-bottom:10px}
 h1 em{color:var(--navy);font-style:italic}
 .sub{font-size:14px;color:var(--text2);line-height:1.65;margin-bottom:36px;font-weight:300;max-width:480px}
@@ -36,18 +39,14 @@ input:focus,textarea:focus{border-color:var(--gold)}
 textarea{min-height:80px;font-family:'DM Sans',sans-serif;line-height:1.5}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .grid input{margin-bottom:0}
-
 .toggle{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
 .toggle input[type="radio"]{display:none}
 .toggle label{display:block;padding:13px 16px;background:var(--ni);border:1px solid var(--ng);color:var(--nt2);font-size:13px;font-weight:400;letter-spacing:.04em;text-align:center;cursor:pointer;transition:all .15s;margin:0;text-transform:none}
 .toggle input[type="radio"]:checked + label{background:var(--gold);color:var(--navy-dark);border-color:var(--gold);font-weight:500}
-
 .check-row{display:flex;align-items:center;gap:10px;margin:-8px 0 20px 0;cursor:pointer;user-select:none}
 .check-row input[type="checkbox"]{width:14px;height:14px;margin:0;accent-color:var(--gold);cursor:pointer;flex-shrink:0}
 .check-row span{font-size:12px;color:var(--nt2);font-weight:300;letter-spacing:.02em}
-
 .hidden{display:none!important}
-
 .btn{width:100%;margin-top:20px;padding:14px;background:var(--gold);color:var(--navy-dark);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s}
 .btn:hover:not(:disabled){background:var(--gold-light)}
 .btn:disabled{opacity:.45;cursor:not-allowed}
@@ -57,10 +56,16 @@ textarea{min-height:80px;font-family:'DM Sans',sans-serif;line-height:1.5}
 @keyframes spin{to{transform:rotate(360deg)}}
 .err{display:none;padding:13px 18px;background:#fff5f5;border:1px solid #f0a0a0;font-size:13px;color:#a33030;margin-bottom:20px}
 .err.on{display:block}
-.refusal{display:none;padding:24px 28px;background:var(--white);border:1px solid var(--border);border-left:3px solid var(--gold);margin-bottom:20px}
+.refusal{display:none;background:var(--white);border:1px solid var(--border);border-left:3px solid var(--gold);margin-bottom:20px}
 .refusal.on{display:block}
+.refusal-head{padding:24px 28px 16px}
 .refusal-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--text);margin-bottom:10px}
 .refusal-body{font-size:14px;color:var(--text2);line-height:1.65;font-weight:300}
+.refusal-section{padding:18px 28px;border-top:1px solid var(--border)}
+.refusal-section-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);font-weight:500;margin-bottom:10px}
+.refusal-section ul{list-style:none;padding:0}
+.refusal-section li{font-size:14px;color:var(--text2);line-height:1.65;padding:6px 0 6px 16px;font-weight:300;position:relative}
+.refusal-section li::before{content:'';position:absolute;left:0;top:14px;width:5px;height:1px;background:var(--gold)}
 .out{display:none}
 .out.on{display:block}
 .disc{padding:12px 20px;font-size:12px;line-height:1.55;font-weight:300;margin-bottom:2px}
@@ -72,8 +77,10 @@ textarea{min-height:80px;font-family:'DM Sans',sans-serif;line-height:1.5}
 .bmeta{font-size:13px;color:var(--text2);font-weight:300}
 .bbadge{display:inline-block;background:var(--gold);color:var(--navy-dark);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;margin-right:10px;vertical-align:middle;font-family:'DM Sans',sans-serif}
 .bbadge.cold{background:transparent;color:var(--text2);border:1px solid var(--border)}
+.tom{background:var(--tom-bg);border:1px solid var(--tom-border);padding:18px 24px;margin-bottom:2px}
+.tom-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#7a6030;font-weight:500;margin-bottom:8px}
+.tom-text{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:var(--text);line-height:1.45;font-style:italic}
 .sec{background:var(--white);border:1px solid var(--border);padding:24px 30px;margin-bottom:2px}
-.sec:last-of-type{margin-bottom:0}
 .sec.gap{background:var(--gap-bg);border-style:dashed;border-color:var(--gap-border)}
 .shead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .snum{width:18px;height:18px;background:var(--navy);color:var(--gold);font-size:9px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -81,10 +88,33 @@ textarea{min-height:80px;font-family:'DM Sans',sans-serif;line-height:1.5}
 .stitle{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:var(--text);margin-bottom:10px}
 .sec.gap .stitle{color:var(--gap-text)}
 .gap-msg{font-size:14px;color:var(--gap-text);line-height:1.65;font-weight:300;font-style:italic;padding:8px 0}
+.lifecycle{display:inline-block;font-size:11px;font-weight:500;color:var(--navy);background:var(--phase-bg);padding:4px 10px;border-radius:2px;letter-spacing:.04em;margin-top:4px}
 .angle{background:var(--navy);border-color:var(--navy)}
 .angle .snum{background:rgba(255,255,255,.1)}
 .angle .slabel{color:var(--nt3)}
 .angle .stitle{color:var(--gold)}
+.angle .blist li{border-bottom-color:rgba(255,255,255,0.1);color:var(--nt2)}
+.angle .blist li::before{background:var(--gold)}
+.fit-sec{background:var(--white);border:1px solid var(--border);padding:24px 30px;margin-bottom:2px}
+.fit-strong{color:#0d6e3f;font-weight:500;font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;display:block}
+.fit-possible{color:#a06b1a;font-weight:500;font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;display:block}
+.fit-unclear{color:var(--text2);font-weight:500;font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;display:block}
+.fit-text{font-size:14px;color:var(--text2);line-height:1.65;font-weight:300}
+.land{background:var(--land-bg);border:1px solid var(--land-border);padding:22px 28px;margin-bottom:2px}
+.land .slabel{color:var(--land-text)}
+.land .stitle{color:var(--land-text)}
+.land-list{list-style:none;padding:0;margin-top:6px}
+.land-list li{font-size:14px;color:var(--land-text);line-height:1.6;padding:8px 0 8px 18px;font-weight:300;position:relative;border-bottom:1px solid rgba(201,122,92,0.18)}
+.land-list li:last-child{border-bottom:none}
+.land-list li::before{content:'!';position:absolute;left:0;top:8px;width:14px;height:14px;background:var(--land-border);color:#fff;border-radius:50%;font-size:9px;font-weight:600;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif}
+.phase{background:var(--phase-bg);border:1px solid rgba(43,58,107,0.25);padding:22px 28px;margin-bottom:2px}
+.phase .slabel{color:var(--navy)}
+.phase .stitle{color:var(--navy);font-size:16px;margin-bottom:6px}
+.phase-meta{font-size:12px;color:var(--text2);margin-bottom:14px}
+.phase-meta strong{color:var(--navy);font-weight:500}
+.phase-draft{background:var(--white);padding:14px 18px;border-left:2px solid var(--navy);font-size:14px;line-height:1.6;color:var(--text);font-weight:300;font-style:italic;margin-bottom:12px}
+.phase-note{font-size:12px;color:var(--text2);font-weight:300;line-height:1.55}
+.phase-note strong{font-weight:500;color:var(--navy)}
 .starters{list-style:none}
 .starters li{font-size:14px;color:var(--text2);line-height:1.65;padding:10px 0 10px 16px;border-bottom:1px solid var(--border);font-weight:300;position:relative}
 .starters li:last-child{border-bottom:none;padding-bottom:0}
@@ -97,26 +127,25 @@ textarea{min-height:80px;font-family:'DM Sans',sans-serif;line-height:1.5}
 .blist li:first-child{padding-top:0}
 .blist li::before{content:'';position:absolute;left:0;top:17px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
 .blist li:first-child::before{top:6px}
-.angle .blist li{border-bottom-color:rgba(255,255,255,0.1);color:var(--nt2)}
-.angle .blist li::before{background:var(--gold)}
 .actions{display:flex;gap:12px;margin-top:20px}
 .btn-dl{padding:12px 22px;background:var(--navy);color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s}
 .btn-dl:hover{background:var(--navy-dark)}
 .btn-new{padding:12px 20px;background:transparent;color:var(--text3);font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(26,37,64,.18);cursor:pointer;transition:color .2s}
 .btn-new:hover{color:var(--text)}
 .footer{padding:18px 40px;border-top:1px solid var(--border);background:var(--white);font-size:11px;color:var(--text3);letter-spacing:.06em}
+.brief-footer{padding:14px 30px;background:var(--white);border:1px solid var(--border);font-size:11px;color:var(--text3);letter-spacing:.04em;line-height:1.5;font-style:italic}
 @media print{
   .header,.footer,.card,.status,.err,.refusal,.actions,h1,.sub{display:none!important}
   body{background:#fff}
   .out{display:block!important}
-  .angle{background:var(--navy)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .angle,.land,.phase,.tom{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .sec.gap{background:#fafaf8!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .bbadge{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .bbadge,.lifecycle{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 @media(max-width:600px){
   .main{padding:32px 20px 60px}.header{padding:18px 20px}
   .card{padding:24px 20px}.grid{grid-template-columns:1fr}
-  h1{font-size:28px}.bh,.sec{padding:18px 20px}
+  h1{font-size:28px}.bh,.sec,.tom,.land,.phase,.fit-sec{padding:18px 20px}
   .toggle{grid-template-columns:1fr}
 }
 </style>
@@ -136,7 +165,6 @@ textarea{min-height:80px;font-family:'DM Sans',sans-serif;line-height:1.5}
   <p class="sub">A one-page prep brief in under 60 seconds. Surfaces what is verifiable, labels what is not. Internal use only.</p>
 
   <div class="card" id="formCard">
-
     <label class="label">Meeting context</label>
     <div class="toggle">
       <input type="radio" name="mctx" id="mctxCold" value="cold" checked onchange="onContextChange()">
@@ -144,25 +172,20 @@ textarea{min-height:80px;font-family:'DM Sans',sans-serif;line-height:1.5}
       <input type="radio" name="mctx" id="mctxRef" value="referral" onchange="onContextChange()">
       <label for="mctxRef">Warm referral</label>
     </div>
-
     <div id="referrerWrap" class="hidden">
       <label class="label" for="rname">Referrer name</label>
       <input type="text" id="rname" placeholder="Who referred them" autocomplete="off">
     </div>
-
     <label class="label" for="pname">Prospect name</label>
     <input type="text" id="pname" placeholder="First and last name" autocomplete="off">
-
     <div id="linkedinWrap">
       <label class="label" for="purl">LinkedIn URL</label>
       <input type="url" id="purl" placeholder="https://linkedin.com/in/..." autocomplete="off">
     </div>
-
     <label class="check-row" for="noli">
       <input type="checkbox" id="noli" onchange="onNoLinkedInChange()">
       <span>No LinkedIn — I will provide context instead</span>
     </label>
-
     <div class="grid">
       <div>
         <label class="label" for="pco">Company <span class="opt">optional</span></label>
@@ -173,19 +196,14 @@ textarea{min-height:80px;font-family:'DM Sans',sans-serif;line-height:1.5}
         <input type="text" id="pdate" placeholder="e.g. April 30" autocomplete="off">
       </div>
     </div>
-
     <label class="label" for="pctx"><span id="ctxLabel">What you already know <span class="opt">optional but powerful</span></span></label>
     <textarea id="pctx" placeholder="Referrer notes, conversation history, anything they have shared. The more you give, the sharper the brief."></textarea>
-
     <button class="btn" id="genBtn" onclick="run()">Generate brief</button>
   </div>
 
   <div class="status" id="status"><div class="spin"></div><span id="stxt">Researching prospect...</span></div>
   <div class="err" id="err"></div>
-  <div class="refusal" id="refusal">
-    <div class="refusal-title" id="refusalTitle">Not enough public information found</div>
-    <div class="refusal-body" id="refusalBody"></div>
-  </div>
+  <div class="refusal" id="refusal"></div>
   <div class="out" id="out"></div>
   <div class="actions" id="actions" style="display:none">
     <button class="btn-dl" onclick="window.print()">Download PDF</button>
@@ -193,7 +211,7 @@ textarea{min-height:80px;font-family:'DM Sans',sans-serif;line-height:1.5}
   </div>
 </main>
 
-<footer class="footer">Read Advisory Co. &nbsp;·&nbsp; Internal use only &nbsp;·&nbsp; readadvisoryco.com</footer>
+<footer class="footer">Read Advisory Co. &nbsp;&middot;&nbsp; Internal use only &nbsp;&middot;&nbsp; readadvisoryco.com</footer>
 
 <script>
 var KEY = 'sk-ant-api03-CMbOa-15rd27iOZ3d'+'MtQb5zHpEOUKcCHtS3ALtFMwSgNSio'+'-4264TT9CzbVq-QAH-yXTFVMT1uEeknNWhmUvlg-PK6ClwAA';
@@ -216,57 +234,90 @@ function onNoLinkedInChange(){
 
 function buildSystem(meetingContext, referrerName){
   var isReferral = meetingContext === 'referral';
+  var today = new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
 
   var contextBlock = isReferral
-    ? 'MEETING CONTEXT — WARM REFERRAL.\nThis prospect was referred by ' + referrerName + '. The advisor walks in with warm air in the room. The brief must reflect this. The angle section should guide the advisor on how to acknowledge ' + referrerName + ' naturally in the opening. Conversation starters should leverage the warm context — not pretend it is a cold call. The fit assessment should consider what kind of person ' + referrerName + ' tends to refer.'
-    : 'MEETING CONTEXT — COLD PROSPECT.\nThis is a cold meeting. No mutual connection to lean on. The advisor must establish credibility quickly. The angle section should focus on how to open with substance instead of small talk, and how to earn the right to ask deeper questions in the first ten minutes. Conversation starters should reference specific public signals (role, firm, recent news, industry context) to demonstrate the advisor did the homework.';
+    ? 'MEETING CONTEXT: WARM REFERRAL.\nThis prospect was referred by ' + referrerName + '. The advisor walks in with warm air in the room. The brief must reflect this. The angle section should guide the advisor on how to acknowledge ' + referrerName + ' naturally in the opening. At least one conversation starter should leverage the warm context. The fit assessment should consider what kind of person ' + referrerName + ' tends to refer.'
+    : 'MEETING CONTEXT: COLD PROSPECT.\nThis is a cold meeting. No mutual connection. The advisor must establish credibility quickly. The angle section should focus on opening with substance instead of small talk, and earning the right to ask deeper questions in the first ten minutes. Conversation starters should reference specific public signals to demonstrate the advisor did the homework.';
 
-  return [
+  var phaseField = isReferral ? '"phase_1_acknowledgment":{"channel":"text or email - your call", "timing":"within 24 hours of meeting being booked", "draft":"Brief outline starting point in advisor voice. Acknowledges the referrer warmly, mentions the upcoming meeting, no business pitch. Customizable template, not a finished message."},' : '';
+
+  var startersNote = isReferral ? '. At least one references the referrer naturally' : '. Each demonstrates the advisor did homework on public signals';
+  var angleNote = isReferral ? ' including how to acknowledge ' + referrerName + ' without being transactional' : ' for establishing credibility quickly without a warm bridge';
+
+  var lines = [
     'You are a pre-meeting research assistant for an independent financial advisor.',
-    'The advisor already has a meeting booked with this prospect. The brief is for the advisor to read in five minutes the night before. It must help the advisor walk in prepared, knowing who they are sitting across from, what that person likely cares about, and how to make the first conversation feel like the advisor did the homework.',
+    'Today is ' + today + '. The advisor has a meeting booked with this prospect. The brief is for the advisor to read in five minutes the night before. It must help the advisor walk in prepared, knowing who they are sitting across from, what that person likely cares about, and how to make the first conversation feel like the advisor did the homework.',
     '',
     contextBlock,
     '',
-    'RESEARCH PROCESS — DO THIS FIRST.',
-    'Use web_search aggressively. Search the prospect by name, by name plus company, by name plus location, by LinkedIn URL if provided. If a company is provided, search recent news about the company. If the prospect appears to be a financial professional, search BrokerCheck and SEC IAPD records. Combine your findings with any context the advisor has provided in the user message.',
-    'Use ONLY publicly verifiable professional information. No speculation. No inference beyond what evidence supports.',
+    'CRITICAL ROLE BOUNDARIES.',
+    'You are producing a research note about a prospect. You are NOT producing financial advice. You are NOT recommending products, securities, strategies, allocations, or specific actions. You describe the prospect in terms of who they are, what they likely care about, and how to approach the conversation. You never prescribe what the advisor should sell, recommend, or do for the prospect. The fit assessment is descriptive (does this prospect have characteristics that suggest wealth management needs) not prescriptive (the advisor should sell them X).',
     '',
-    'OUTPUT MODES — YOU MUST CHOOSE ONE.',
+    'RESEARCH PROCESS.',
+    'Use web_search aggressively. Search the prospect by name, by name plus company, by name plus location, by LinkedIn URL if provided. If a company is provided, search recent news. If the prospect appears to be a financial professional, search BrokerCheck and SEC IAPD records. Combine your findings with any context the advisor has provided in the user message.',
     '',
-    'MODE A — FULL BRIEF. Use this when you found enough verifiable information to populate every section with evidence-backed bullets. Each bullet must reference a specific verifiable fact: a role, a firm, a tenure, a publicly stated focus area, a recent news item, an industry signal, or specific advisor-provided context. Do not write generic bullets that could apply to any prospect.',
+    'Weight recent information heavily. News from the last 6 months is current. News from 6-18 months back is context. News older than 18 months is historical. If the most recent verifiable signal about this person is older than 18 months, flag this in your sources_summary so the advisor knows the brief reflects older information.',
     '',
-    'MODE B — PARTIAL BRIEF. Use this when you found verifiable information for SOME sections but not others. Populate the sections you can support with evidence. For sections where evidence is thin, return an empty array for that section. The renderer will display a clear gap message for empty sections. Do not fabricate to fill gaps. Do not write descriptions of what the section would contain.',
+    'Use ONLY publicly verifiable information. No speculation. No inference beyond what evidence supports.',
     '',
-    'MODE C — REFUSAL. Use this when you cannot verify the prospect exists or you have no usable information. Return a refusal object with a clear explanation of what you searched and why it was insufficient.',
+    'INPUT HANDLING.',
+    'When the advisor has checked "No LinkedIn" and provided substantive context (more than ~50 characters), the advisor context becomes the PRIMARY source for building the brief. Web search is used to add adjacent context (industry signals, geographic patterns, life-stage patterns matching what the advisor described) rather than to verify the prospect personally. Build the brief from what the advisor told you, supplemented by adjacent research.',
     '',
-    'OUTPUT FORMAT — RETURN EXACTLY ONE OF THESE JSON SHAPES, NOTHING ELSE.',
+    'In the No-LinkedIn-with-rich-context scenario, default to MODE B (partial brief) using the advisor context as the foundation. MODE C (refusal) is reserved for cases where the advisor has provided neither LinkedIn nor meaningful context.',
+    '',
+    'OUTPUT MODES.',
+    '',
+    'MODE A (FULL BRIEF). Use when you found enough verifiable information (or rich advisor context) to populate every section with evidence-backed content. Each bullet must reference a specific verifiable fact: a role, a firm, a tenure, a publicly stated focus area, a recent news item, an industry signal, or specific advisor-provided context. No generic bullets that could apply to any prospect.',
+    '',
+    'MODE B (PARTIAL BRIEF). Use when you found verifiable information for SOME sections but not others. Populate sections you can support with evidence. For sections where evidence is thin, return an empty array. The renderer will display a clear gap message. Do not fabricate to fill gaps.',
+    '',
+    'MODE C (REFUSAL). Use only when both public records AND advisor context are insufficient. When refusing, provide useful adjacent guidance: questions to ask the referrer, broader context that might still help, what the advisor should do before the meeting.',
+    '',
+    'OUTPUT FORMAT (STRICT JSON).',
     '',
     'For MODE A or MODE B, return:',
-    '{"mode":"full" or "partial","snapshot":[evidence-backed bullets, or empty array if thin],"world":[evidence-backed bullets, or empty array if thin],"cares":[evidence-backed bullets, or empty array if thin],"starters":[evidence-backed questions, or empty array if thin],"angle":[evidence-backed approach guidance, or empty array if thin],"sources_summary":"One sentence on what you found and what was missing"}',
+    '{"mode":"full" or "partial",',
+    '"top_of_mind":"One sentence the advisor must remember walking in. The single fact, hook, or angle that matters most.",',
+    '"life_cycle":"One of: pre-liquidity event, post-liquidity event, accumulation phase, decumulation phase, succession planning, generational wealth transfer, mid-career executive accumulation, early career, unclear",',
+    '"snapshot":[3 evidence-backed bullets covering role/firm/tenure, defining career fact, and FINANCIAL/WEALTH SIGNAL (compensation visible in proxy filings, business sale value, equity holdings, board comp, etc) - or empty array if thin],',
+    '"world":[3 evidence-backed bullets on company news, industry pressure, recent role changes, market context affecting them - or empty array if thin],',
+    '"cares":[3 evidence-backed bullets on likely financial priorities given role and life stage, specific concerns the advisor can help with, one reference point that shows the advisor understands their world - or empty array if thin],',
+    '"starters":[3 specific questions the advisor can ask in the first ten minutes, each grounded in concrete research or context' + startersNote + ' - or empty array if thin],',
+    '"angle":[4 to 5 evidence-backed bullets on opening guidance' + angleNote + ', what to listen for in the first five minutes, and conversational approach - or empty array if thin],',
+    '"fit_assessment":{"verdict":"strong fit" or "possible fit" or "unclear", "reasoning":"One paragraph explaining whether this prospect has characteristics suggesting wealth management needs, what kind of advisor would be the right fit, and what to probe to confirm. Descriptive only - never prescriptive about products or strategies."},',
+    '"landmines":[1 to 3 specific topics, controversies, or sensitivities to NOT bring up unprompted, and how to handle them if the prospect raises them. Examples: a public criticism, a legal matter, a previous bad experience. Empty array only if there are genuinely no landmines visible in public information.],',
+    phaseField,
+    '"sources_summary":"One sentence on what you found and what was missing. Flag if most recent signal is older than 18 months."}',
     '',
-    'For MODE C, return:',
-    '{"mode":"refusal","reason":"One paragraph explaining what you searched, what you did and did not find, and what the advisor should do instead — for example, ask the referrer for context, or supply the LinkedIn URL"}',
+    'For MODE C (refusal), return:',
+    '{"mode":"refusal",',
+    '"reason":"One paragraph explaining what you searched, what you found and did not find, and why context was insufficient.",',
+    '"adjacent_context":[2 to 3 bullets of broader context that might still help. Industry patterns, geographic signals, life-stage observations relevant to the situation - or empty array if nothing relevant],',
+    '"questions_for_referrer":[3 specific questions the advisor should ask the referrer before the meeting to fill the gaps]}',
     '',
     'BULLET QUALITY RULES.',
-    '— Every bullet under snapshot, world, cares, starters, angle must be a specific claim or specific question, not a category description.',
-    '— Wrong: "Their current role and how long they have been there"',
-    '— Right: "VP of Operations at Acme Manufacturing since 2019, joined from a 12-year run at Boeing"',
-    '— Wrong: "A question that opens up their goals"',
-    '— Right: "You spent 12 years at Boeing before Acme — what made the move feel right when it came?"',
-    '— If you cannot write a specific evidence-backed bullet for a section, leave that section as an empty array. Never write a placeholder.',
+    '- Every bullet must be a specific claim or specific question, not a category description.',
+    '- Wrong: "Their current role and how long they have been there"',
+    '- Right: "VP of Operations at Acme Manufacturing since 2019, joined from a 12-year run at Boeing"',
+    '- If you cannot write a specific evidence-backed bullet for a section, leave that section as an empty array. Never write a placeholder.',
     '',
-    'SECTIONS — what each one is for.',
-    'snapshot: Who they are. Role, firm, tenure, one defining career fact, one personal or community signal if publicly available.',
-    'world: What is happening around them right now. Company news, industry pressure, recent role changes, broader market context affecting their situation.',
-    'cares: What is likely on their mind given their role and life stage. Specific financial priorities, specific concerns the advisor can help with, one reference point that shows the advisor understands their world.',
-    'starters: Three specific questions the advisor can ask in the first ten minutes. Each one should reference something concrete from the research or advisor context. ' + (isReferral ? 'At least one should reference the referrer naturally.' : 'Each should demonstrate the advisor did the homework on public signals.'),
-    'angle: How the advisor should open, what to listen for in the first five minutes, and an honest fit assessment — strong fit, possible fit, or unclear and what to probe. ' + (isReferral ? 'The opening guidance must include how to acknowledge ' + referrerName + ' naturally without making it feel transactional.' : 'The opening guidance must focus on establishing credibility quickly without a warm bridge.'),
+    'NUMERICAL CONSISTENCY.',
+    'When you cite numbers (compensation, headcount, dollar amounts, dates), anchor each to a specific source. If you find conflicting numbers in different sources, use the most recent or most authoritative source. Within a single brief, do not contradict yourself between sections.',
     '',
-    'CRITICAL RULES.',
-    '— Return only the JSON object. No prose before or after. No markdown. No code fences. No citation tags.',
-    '— Every array in MODE A or MODE B should contain 3 strings, OR be an empty array. Never 1 or 2 — either fully populated with 3 evidence-backed entries or empty.',
-    '— The advisor will trust this brief. Do not fabricate. When in doubt, return empty arrays or refuse.'
-  ].join('\n');
+    'VOICE RULES (READ ADVISORY BRAND).',
+    'No em-dashes between sentences. Em-dashes inside sentences are fine.',
+    'Avoid the words "genuinely", "honestly", "straightforward". They feel like AI tells.',
+    'Clean flowing prose, not jargon. Read each bullet aloud mentally before committing it.',
+    'No corporate-speak: "stakeholder alignment", "key priorities", "value drivers", "thought leadership", "leverage synergies". Real language only.',
+    '',
+    'CRITICAL OUTPUT RULES.',
+    '- Return only the JSON object. No prose before or after. No markdown. No code fences. No citation tags.',
+    '- Every array in MODE A/B should contain its target count of items, OR be an empty array. Never partial.',
+    '- The advisor will trust this brief. Do not fabricate. When in doubt, return empty arrays or refuse.',
+    '- Never recommend a product, strategy, or specific financial action. Describe the prospect, recommend conversational approach.'
+  ];
+  return lines.filter(function(l){return l !== '';}).join('\n');
 }
 
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
@@ -292,7 +343,7 @@ async function run(){
   var userMsgLines = [
     'Meeting context: ' + (isReferral ? 'WARM REFERRAL from ' + referrer : 'COLD PROSPECT'),
     'Prospect: ' + name,
-    'LinkedIn: ' + (noLinkedIn ? 'NOT ON LINKEDIN — rely on advisor-provided context and other public sources' : url),
+    'LinkedIn: ' + (noLinkedIn ? 'NOT ON LINKEDIN - rely on advisor-provided context and adjacent public sources' : url),
     'Company: ' + (co || 'not provided'),
     'Meeting date: ' + (dt || 'not specified'),
     'Advisor-provided context: ' + (ctx || 'none provided'),
@@ -307,7 +358,7 @@ async function run(){
       headers:{'Content-Type':'application/json','x-api-key':KEY,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
       body:JSON.stringify({
         model:'claude-sonnet-4-20250514',
-        max_tokens:2000,
+        max_tokens:3000,
         system:buildSystem(meetingContext, referrer),
         tools:[{type:'web_search_20250305',name:'web_search'}],
         messages:[{role:'user',content:userMsg}]
@@ -322,7 +373,7 @@ async function run(){
     var brief = JSON.parse(jsonMatch[0]);
 
     if(brief.mode === 'refusal'){
-      renderRefusal(name, brief.reason);
+      renderRefusal(name, brief);
     } else {
       render(name, co, dt, brief, meetingContext, referrer);
     }
@@ -330,9 +381,27 @@ async function run(){
   finally{load(false);}
 }
 
-function renderRefusal(name, reason){
-  document.getElementById('refusalTitle').textContent = 'Not enough public information found on ' + name;
-  document.getElementById('refusalBody').textContent = reason || 'The research did not surface enough verifiable information to build a useful brief. Suggest gathering context from the referrer or from a brief pre-meeting call before the meeting itself.';
+function renderRefusal(name, brief){
+  var html = '<div class="refusal-head">' +
+    '<div class="refusal-title">Not enough public information found on ' + esc(name) + '</div>' +
+    '<div class="refusal-body">' + esc(brief.reason || 'The research did not surface enough verifiable information to build a useful brief.') + '</div>' +
+  '</div>';
+
+  if(brief.adjacent_context && brief.adjacent_context.length){
+    html += '<div class="refusal-section">' +
+      '<div class="refusal-section-label">Adjacent context that may still help</div>' +
+      '<ul>' + brief.adjacent_context.map(function(b){return '<li>'+esc(b)+'</li>';}).join('') + '</ul>' +
+    '</div>';
+  }
+
+  if(brief.questions_for_referrer && brief.questions_for_referrer.length){
+    html += '<div class="refusal-section">' +
+      '<div class="refusal-section-label">Questions to ask the referrer before the meeting</div>' +
+      '<ul>' + brief.questions_for_referrer.map(function(b){return '<li>'+esc(b)+'</li>';}).join('') + '</ul>' +
+    '</div>';
+  }
+
+  document.getElementById('refusal').innerHTML = html;
   document.getElementById('refusal').classList.add('on');
   document.getElementById('formCard').style.display='none';
   document.getElementById('actions').style.display='flex';
@@ -359,7 +428,7 @@ function render(name, co, dt, b, meetingContext, referrer){
 
   function starterList(arr){
     if(!arr || !arr.length){
-      return '<div class="gap-msg">No verifiable details to ground specific questions. Suggest opening with broad questions about how they got to where they are, then narrowing based on what they share.</div>';
+      return '<div class="gap-msg">No verifiable details to ground specific questions.</div>';
     }
     return '<ul class="starters">'+arr.map(function(s){return '<li>'+esc(s)+'</li>';}).join('')+'</ul>';
   }
@@ -372,14 +441,62 @@ function render(name, co, dt, b, meetingContext, referrer){
     ? '<div class="disc partial">Partial brief. Some sections did not have enough verifiable public information. Gaps are clearly marked. Verify any detail before acting on it.</div>'
     : '<div class="disc full">Internal use only. Generated from public information. Verify before acting on any detail.</div>';
 
-  document.getElementById('out').innerHTML =
-    disclaimer +
-    '<div class="bh"><div class="eyebrow">Pre-Meeting Brief &nbsp;&middot;&nbsp; '+esc(today)+'</div><div class="bname">'+badge+esc(name)+'</div>'+(meta?'<div class="bmeta">'+meta+'</div>':'')+'</div>'+
+  var fitClass = (b.fit_assessment && b.fit_assessment.verdict) ?
+    (b.fit_assessment.verdict === 'strong fit' ? 'fit-strong' :
+     b.fit_assessment.verdict === 'possible fit' ? 'fit-possible' : 'fit-unclear') : 'fit-unclear';
+
+  var html = disclaimer +
+    '<div class="bh">' +
+      '<div class="eyebrow">Pre-Meeting Brief &nbsp;&middot;&nbsp; '+esc(today)+'</div>' +
+      '<div class="bname">'+badge+esc(name)+'</div>' +
+      (meta?'<div class="bmeta">'+meta+'</div>':'') +
+      (b.life_cycle && b.life_cycle !== 'unclear' ? '<div class="lifecycle">'+esc(b.life_cycle)+'</div>' : '') +
+    '</div>';
+
+  if(b.top_of_mind){
+    html += '<div class="tom">' +
+      '<div class="tom-label">Top of Mind</div>' +
+      '<div class="tom-text">'+esc(b.top_of_mind)+'</div>' +
+    '</div>';
+  }
+
+  html +=
     '<div class="sec'+gapClass(b.snapshot)+'"><div class="shead"><div class="snum">1</div><span class="slabel">Snapshot</span></div><div class="stitle">Who they are</div>'+bullets(b.snapshot)+'</div>'+
     '<div class="sec'+gapClass(b.world)+'"><div class="shead"><div class="snum">2</div><span class="slabel">Their World Right Now</span></div><div class="stitle">Context &amp; current signals</div>'+bullets(b.world)+'</div>'+
     '<div class="sec'+gapClass(b.cares)+'"><div class="shead"><div class="snum">3</div><span class="slabel">What They Likely Care About</span></div><div class="stitle">Where their attention is</div>'+bullets(b.cares)+'</div>'+
     '<div class="sec'+gapClass(b.starters)+'"><div class="shead"><div class="snum">4</div><span class="slabel">Conversation Starters</span></div><div class="stitle">Ways in</div>'+starterList(b.starters)+'</div>'+
     '<div class="sec angle'+gapClass(b.angle)+'"><div class="shead"><div class="snum">5</div><span class="slabel">The Angle</span></div><div class="stitle">How to approach this</div>'+bullets(b.angle)+'</div>';
+
+  if(b.fit_assessment && b.fit_assessment.reasoning){
+    html += '<div class="fit-sec">' +
+      '<div class="shead"><div class="snum">6</div><span class="slabel">Fit Assessment</span></div>' +
+      '<span class="'+fitClass+'">'+esc(b.fit_assessment.verdict || 'Unclear')+'</span>' +
+      '<div class="fit-text">'+esc(b.fit_assessment.reasoning)+'</div>' +
+    '</div>';
+  }
+
+  if(b.landmines && b.landmines.length){
+    html += '<div class="land">' +
+      '<div class="shead"><div class="snum">7</div><span class="slabel">Landmines</span></div>' +
+      '<div class="stitle">What not to bring up</div>' +
+      '<ul class="land-list">'+b.landmines.map(function(s){return '<li>'+esc(s)+'</li>';}).join('')+'</ul>' +
+    '</div>';
+  }
+
+  if(isReferral && b.phase_1_acknowledgment){
+    var p = b.phase_1_acknowledgment;
+    html += '<div class="phase">' +
+      '<div class="shead"><div class="snum">8</div><span class="slabel">Phase 1 - Referral Follow-Through</span></div>' +
+      '<div class="stitle">Acknowledge ' + esc(referrer) + ' within 24 hours</div>' +
+      '<div class="phase-meta"><strong>Channel:</strong> ' + esc(p.channel || 'text or email') + ' &nbsp;&middot;&nbsp; <strong>Timing:</strong> ' + esc(p.timing || 'within 24 hours of meeting being booked') + '</div>' +
+      (p.draft ? '<div class="phase-draft">' + esc(p.draft) + '</div>' : '') +
+      '<div class="phase-note"><strong>Phases 2 and 3</strong> follow after the meeting and after conversion. Drafts will be auto-generated once your voice profile is active.</div>' +
+    '</div>';
+  }
+
+  html += '<div class="brief-footer">Research note &nbsp;&middot;&nbsp; Internal use only &nbsp;&middot;&nbsp; Not financial advice &nbsp;&middot;&nbsp; Verify before acting</div>';
+
+  document.getElementById('out').innerHTML = html;
   document.getElementById('out').classList.add('on');
   document.getElementById('actions').style.display='flex';
   document.getElementById('formCard').style.display='none';
@@ -398,7 +515,10 @@ function load(on){
 
 function showErr(m){var e=document.getElementById('err');e.textContent=m;e.classList.add('on');}
 function clearErr(){document.getElementById('err').classList.remove('on');}
-function clearRefusal(){document.getElementById('refusal').classList.remove('on');}
+function clearRefusal(){
+  document.getElementById('refusal').classList.remove('on');
+  document.getElementById('refusal').innerHTML='';
+}
 function clearOut(){
   document.getElementById('out').classList.remove('on');
   document.getElementById('out').innerHTML = '';
