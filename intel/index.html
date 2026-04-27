@@ -134,18 +134,40 @@ textarea{min-height:80px;font-family:'DM Sans',sans-serif;line-height:1.5}
 .btn-new:hover{color:var(--text)}
 .footer{padding:18px 40px;border-top:1px solid var(--border);background:var(--white);font-size:11px;color:var(--text3);letter-spacing:.06em}
 .brief-footer{padding:14px 30px;background:var(--white);border:1px solid var(--border);font-size:11px;color:var(--text3);letter-spacing:.04em;line-height:1.5;font-style:italic}
+.main.wide{max-width:1140px}
+.brief-grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;grid-template-areas:"main sidebar";gap:24px;align-items:start;margin-bottom:2px}
+.brief-main{grid-area:main;min-width:0;display:flex;flex-direction:column;gap:2px}
+.brief-sidebar{grid-area:sidebar;position:sticky;top:20px;align-self:start}
+.phase-side{background:var(--phase-bg);border:1px solid rgba(43,58,107,0.25);padding:20px 22px}
+.phase-side .shead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.phase-side .snum{width:18px;height:18px;background:var(--navy);color:var(--gold);font-size:9px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.phase-side .slabel{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);font-weight:500}
+.phase-side .stitle{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:var(--navy);margin-bottom:6px;line-height:1.3}
+.phase-side .phase-meta{font-size:12px;color:var(--text2);margin-bottom:12px}
+.phase-side .phase-meta strong{color:var(--navy);font-weight:500}
+.phase-side .phase-draft{background:var(--white);padding:13px 16px;border-left:2px solid var(--navy);font-size:13px;line-height:1.55;color:var(--text);font-weight:300;font-style:italic;margin-bottom:12px}
+.phase-side .phase-note{font-size:11px;color:var(--text2);font-weight:300;line-height:1.5}
+.phase-side .phase-note strong{font-weight:500;color:var(--navy)}
 @media print{
   .header,.footer,.card,.status,.err,.refusal,.actions,h1,.sub{display:none!important}
   body{background:#fff}
   .out{display:block!important}
-  .angle,.land,.phase,.tom{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .main.wide{max-width:760px}
+  .brief-grid{grid-template-columns:1fr;grid-template-areas:"sidebar" "main"}
+  .brief-sidebar{position:static}
+  .angle,.land,.phase,.phase-side,.tom{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .sec.gap{background:#fafaf8!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .bbadge,.lifecycle{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
+@media(max-width:1000px){
+  .main.wide{max-width:760px}
+  .brief-grid{grid-template-columns:1fr;grid-template-areas:"sidebar" "main"}
+  .brief-sidebar{position:static}
+}
 @media(max-width:600px){
-  .main{padding:32px 20px 60px}.header{padding:18px 20px}
+  .main{padding:32px 20px 60px}.main.wide{padding:32px 20px 60px}.header{padding:18px 20px}
   .card{padding:24px 20px}.grid{grid-template-columns:1fr}
-  h1{font-size:28px}.bh,.sec,.tom,.land,.phase,.fit-sec{padding:18px 20px}
+  h1{font-size:28px}.bh,.sec,.tom,.land,.phase,.phase-side,.fit-sec{padding:18px 20px}
   .toggle{grid-template-columns:1fr}
 }
 </style>
@@ -175,6 +197,10 @@ textarea{min-height:80px;font-family:'DM Sans',sans-serif;line-height:1.5}
     <div id="referrerWrap" class="hidden">
       <label class="label" for="rname">Referrer name</label>
       <input type="text" id="rname" placeholder="Who referred them" autocomplete="off">
+      <label class="check-row" for="thanked" style="margin-top:-8px">
+        <input type="checkbox" id="thanked">
+        <span>I&rsquo;ve already thanked the referrer</span>
+      </label>
     </div>
     <label class="label" for="pname">Prospect name</label>
     <input type="text" id="pname" placeholder="First and last name" autocomplete="off">
@@ -240,7 +266,11 @@ function buildSystem(meetingContext, referrerName){
     ? 'MEETING CONTEXT: WARM REFERRAL.\nThis prospect was referred by ' + referrerName + '. The advisor walks in with warm air in the room. The brief must reflect this. The angle section should guide the advisor on how to acknowledge ' + referrerName + ' naturally in the opening. At least one conversation starter should leverage the warm context. The fit assessment should consider what kind of person ' + referrerName + ' tends to refer.'
     : 'MEETING CONTEXT: COLD PROSPECT.\nThis is a cold meeting. No mutual connection. The advisor must establish credibility quickly. The angle section should focus on opening with substance instead of small talk, and earning the right to ask deeper questions in the first ten minutes. Conversation starters should reference specific public signals to demonstrate the advisor did the homework.';
 
-  var phaseField = isReferral ? '"phase_1_acknowledgment":{"channel":"text or email - your call", "timing":"within 24 hours of meeting being booked", "draft":"Brief outline starting point in advisor voice. Acknowledges the referrer warmly, mentions the upcoming meeting, no business pitch. Customizable template, not a finished message."},' : '';
+  var phaseField = isReferral ? '"phase_1_acknowledgment":{"recipient":"' + referrerName + '", "channel":"text or email", "timing":"within 24 hours of meeting being booked", "draft":"3 to 4 sentences ADDRESSED TO THE REFERRER. Opens with Hi [' + referrerName + ' first name]. Thanks them for the introduction by name. Briefly mentions the upcoming conversation with the prospect. Closes warm. NEVER addresses the prospect. NEVER opens with the prospect name. NEVER includes specifics about the prospect that the referrer did not already share. The advisor will send this to ' + referrerName + ', not to the prospect."},' : '';
+
+  var phase1Rules = isReferral
+    ? 'PHASE 1 ACKNOWLEDGMENT - HARD RULES.\nThe phase_1_acknowledgment.draft field is a message FROM THE ADVISOR TO ' + referrerName + ' (the referrer). It is NOT a message to the prospect. Apply these rules without exception:\n- The greeting is "Hi ' + referrerName.split(' ')[0] + '" - using the referrer first name only. Never the prospect name.\n- The body thanks ' + referrerName + ' for the introduction by name.\n- The body mentions the upcoming conversation with the prospect briefly. No pitch, no specifics, no logistics.\n- 3 to 4 sentences total. Warm and personal, not formal.\n- PRIVACY HARD RULE: the draft must NEVER contain details about the prospect that ' + referrerName + ' did not already share with the advisor. The referrer does not need to know the prospect net worth, the prospect concerns, the prospect personal life, or what the meeting will cover. The draft is a thank-you, not a status report. If the advisor context contains private prospect details (financial signals, family information, fears, plans), those details must NOT appear in the phase_1_acknowledgment.draft.'
+    : '';
 
   var startersNote = isReferral ? '. At least one references the referrer naturally' : '. Each demonstrates the advisor did homework on public signals';
   var angleNote = isReferral ? ' including how to acknowledge ' + referrerName + ' without being transactional' : ' for establishing credibility quickly without a warm bridge';
@@ -253,6 +283,8 @@ function buildSystem(meetingContext, referrerName){
     '',
     'CRITICAL ROLE BOUNDARIES.',
     'You are producing a research note about a prospect. You are NOT producing financial advice. You are NOT recommending products, securities, strategies, allocations, or specific actions. You describe the prospect in terms of who they are, what they likely care about, and how to approach the conversation. You never prescribe what the advisor should sell, recommend, or do for the prospect. The fit assessment is descriptive (does this prospect have characteristics that suggest wealth management needs) not prescriptive (the advisor should sell them X).',
+    '',
+    phase1Rules,
     '',
     'RESEARCH PROCESS.',
     'Use web_search aggressively. Search the prospect by name, by name plus company, by name plus location, by LinkedIn URL if provided. If a company is provided, search recent news. If the prospect appears to be a financial professional, search BrokerCheck and SEC IAPD records. Combine your findings with any context the advisor has provided in the user message.',
@@ -326,6 +358,7 @@ async function run(){
   var meetingContext = document.querySelector('input[name="mctx"]:checked').value;
   var isReferral = meetingContext === 'referral';
   var referrer = document.getElementById('rname').value.trim();
+  var alreadyThanked = document.getElementById('thanked').checked;
   var name = document.getElementById('pname').value.trim();
   var noLinkedIn = document.getElementById('noli').checked;
   var url = document.getElementById('purl').value.trim();
@@ -375,7 +408,7 @@ async function run(){
     if(brief.mode === 'refusal'){
       renderRefusal(name, brief);
     } else {
-      render(name, co, dt, brief, meetingContext, referrer);
+      render(name, co, dt, brief, meetingContext, referrer, alreadyThanked);
     }
   }catch(e){showErr('Error: '+e.message);}
   finally{load(false);}
@@ -408,9 +441,11 @@ function renderRefusal(name, brief){
   document.querySelector('.btn-dl').style.display='none';
 }
 
-function render(name, co, dt, b, meetingContext, referrer){
+function render(name, co, dt, b, meetingContext, referrer, alreadyThanked){
   document.querySelector('.btn-dl').style.display='';
   var isReferral = meetingContext === 'referral';
+  var showSidebar = isReferral && b.phase_1_acknowledgment && !alreadyThanked;
+
   var badge = isReferral
     ? '<span class="bbadge">Referral &middot; ' + esc(referrer) + '</span>'
     : '<span class="bbadge cold">Cold prospect</span>';
@@ -445,22 +480,22 @@ function render(name, co, dt, b, meetingContext, referrer){
     (b.fit_assessment.verdict === 'strong fit' ? 'fit-strong' :
      b.fit_assessment.verdict === 'possible fit' ? 'fit-possible' : 'fit-unclear') : 'fit-unclear';
 
-  var html = disclaimer +
-    '<div class="bh">' +
+  var headerHtml = '<div class="bh">' +
       '<div class="eyebrow">Pre-Meeting Brief &nbsp;&middot;&nbsp; '+esc(today)+'</div>' +
       '<div class="bname">'+badge+esc(name)+'</div>' +
       (meta?'<div class="bmeta">'+meta+'</div>':'') +
       (b.life_cycle && b.life_cycle !== 'unclear' ? '<div class="lifecycle">'+esc(b.life_cycle)+'</div>' : '') +
     '</div>';
 
+  var mainHtml = '';
   if(b.top_of_mind){
-    html += '<div class="tom">' +
+    mainHtml += '<div class="tom">' +
       '<div class="tom-label">Top of Mind</div>' +
       '<div class="tom-text">'+esc(b.top_of_mind)+'</div>' +
     '</div>';
   }
 
-  html +=
+  mainHtml +=
     '<div class="sec'+gapClass(b.snapshot)+'"><div class="shead"><div class="snum">1</div><span class="slabel">Snapshot</span></div><div class="stitle">Who they are</div>'+bullets(b.snapshot)+'</div>'+
     '<div class="sec'+gapClass(b.world)+'"><div class="shead"><div class="snum">2</div><span class="slabel">Their World Right Now</span></div><div class="stitle">Context &amp; current signals</div>'+bullets(b.world)+'</div>'+
     '<div class="sec'+gapClass(b.cares)+'"><div class="shead"><div class="snum">3</div><span class="slabel">What They Likely Care About</span></div><div class="stitle">Where their attention is</div>'+bullets(b.cares)+'</div>'+
@@ -468,7 +503,7 @@ function render(name, co, dt, b, meetingContext, referrer){
     '<div class="sec angle'+gapClass(b.angle)+'"><div class="shead"><div class="snum">5</div><span class="slabel">The Angle</span></div><div class="stitle">How to approach this</div>'+bullets(b.angle)+'</div>';
 
   if(b.fit_assessment && b.fit_assessment.reasoning){
-    html += '<div class="fit-sec">' +
+    mainHtml += '<div class="fit-sec">' +
       '<div class="shead"><div class="snum">6</div><span class="slabel">Fit Assessment</span></div>' +
       '<span class="'+fitClass+'">'+esc(b.fit_assessment.verdict || 'Unclear')+'</span>' +
       '<div class="fit-text">'+esc(b.fit_assessment.reasoning)+'</div>' +
@@ -476,25 +511,38 @@ function render(name, co, dt, b, meetingContext, referrer){
   }
 
   if(b.landmines && b.landmines.length){
-    html += '<div class="land">' +
+    mainHtml += '<div class="land">' +
       '<div class="shead"><div class="snum">7</div><span class="slabel">Landmines</span></div>' +
       '<div class="stitle">What not to bring up</div>' +
       '<ul class="land-list">'+b.landmines.map(function(s){return '<li>'+esc(s)+'</li>';}).join('')+'</ul>' +
     '</div>';
   }
 
-  if(isReferral && b.phase_1_acknowledgment){
+  var sidebarHtml = '';
+  if(showSidebar){
     var p = b.phase_1_acknowledgment;
-    html += '<div class="phase">' +
-      '<div class="shead"><div class="snum">8</div><span class="slabel">Phase 1 - Referral Follow-Through</span></div>' +
-      '<div class="stitle">Acknowledge ' + esc(referrer) + ' within 24 hours</div>' +
-      '<div class="phase-meta"><strong>Channel:</strong> ' + esc(p.channel || 'text or email') + ' &nbsp;&middot;&nbsp; <strong>Timing:</strong> ' + esc(p.timing || 'within 24 hours of meeting being booked') + '</div>' +
+    var firstName = referrer.split(' ')[0];
+    sidebarHtml = '<aside class="brief-sidebar"><div class="phase-side">' +
+      '<div class="shead"><div class="snum">!</div><span class="slabel">Phase 1 - Acknowledge Referrer</span></div>' +
+      '<div class="stitle">Thank ' + esc(firstName) + ' within 24 hours</div>' +
+      '<div class="phase-meta"><strong>To:</strong> ' + esc(p.recipient || referrer) + ' &nbsp;&middot;&nbsp; <strong>Channel:</strong> ' + esc(p.channel || 'text or email') + '</div>' +
       (p.draft ? '<div class="phase-draft">' + esc(p.draft) + '</div>' : '') +
-      '<div class="phase-note"><strong>Phases 2 and 3</strong> follow after the meeting and after conversion. Drafts will be auto-generated once your voice profile is active.</div>' +
-    '</div>';
+      '<div class="phase-note"><strong>Phases 2 and 3</strong> generate after the meeting from the post-meeting tool.</div>' +
+    '</div></aside>';
   }
 
-  html += '<div class="brief-footer">Research note &nbsp;&middot;&nbsp; Internal use only &nbsp;&middot;&nbsp; Not financial advice &nbsp;&middot;&nbsp; Verify before acting</div>';
+  var briefBody;
+  var mainEl = document.querySelector('.main');
+  if(showSidebar){
+    briefBody = '<div class="brief-grid"><div class="brief-main">' + mainHtml + '</div>' + sidebarHtml + '</div>';
+    mainEl.classList.add('wide');
+  } else {
+    briefBody = mainHtml;
+    mainEl.classList.remove('wide');
+  }
+
+  var html = disclaimer + headerHtml + briefBody +
+    '<div class="brief-footer">Research note &nbsp;&middot;&nbsp; Internal use only &nbsp;&middot;&nbsp; Not financial advice &nbsp;&middot;&nbsp; Verify before acting</div>';
 
   document.getElementById('out').innerHTML = html;
   document.getElementById('out').classList.add('on');
@@ -522,6 +570,7 @@ function clearRefusal(){
 function clearOut(){
   document.getElementById('out').classList.remove('on');
   document.getElementById('out').innerHTML = '';
+  document.querySelector('.main').classList.remove('wide');
 }
 function reset(){
   clearOut();clearRefusal();clearErr();
@@ -529,6 +578,7 @@ function reset(){
   document.getElementById('formCard').style.display = 'block';
   document.getElementById('mctxCold').checked = true;
   document.getElementById('noli').checked = false;
+  document.getElementById('thanked').checked = false;
   ['rname','pname','purl','pco','pdate','pctx'].forEach(function(id){document.getElementById(id).value = '';});
   onContextChange();
   onNoLinkedInChange();
