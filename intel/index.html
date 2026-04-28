@@ -34,7 +34,7 @@ h1 em{color:var(--navy);font-style:italic}
 .card{background:var(--form-bg);padding:40px;margin-bottom:28px;border:1px solid var(--border);border-radius:2px}
 .label{display:block;font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--form-label);margin-bottom:8px}
 .label .opt{color:var(--text3);font-weight:300;letter-spacing:.08em;text-transform:none;margin-left:6px;font-size:10px}
-.helper{font-size:12px;color:var(--text3);margin-top:6px;font-weight:300;font-style:italic}
+.helper{font-size:12px;color:var(--text3);margin-top:6px;margin-bottom:4px;font-weight:300;font-style:italic}
 input,textarea{width:100%;background:var(--form-input-bg);border:1px solid var(--form-input-border);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:400;padding:13px 15px;outline:none;margin-bottom:20px;transition:border-color .2s;resize:vertical;border-radius:2px}
 input::placeholder,textarea::placeholder{color:var(--text3)}
 input:focus,textarea:focus{border-color:var(--navy)}
@@ -215,7 +215,7 @@ textarea{min-height:90px;font-family:'DM Sans',sans-serif;line-height:1.5}
       <input type="url" id="purl" placeholder="https://linkedin.com/in/firstname-lastname" autocomplete="off">
       <div class="helper">Personal profile only — must contain "/in/"</div>
     </div>
-    <label class="check-row" for="noli">
+    <label class="check-row" for="noli" style="margin-top:8px">
       <input type="checkbox" id="noli" onchange="onNoLinkedInChange()">
       <span>No LinkedIn — I will provide context instead</span>
     </label>
