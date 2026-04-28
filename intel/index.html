@@ -34,6 +34,7 @@ h1 em{color:var(--navy);font-style:italic}
 .card{background:var(--form-bg);padding:40px;margin-bottom:28px;border:1px solid var(--border);border-radius:2px}
 .label{display:block;font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--form-label);margin-bottom:8px}
 .label .opt{color:var(--text3);font-weight:300;letter-spacing:.08em;text-transform:none;margin-left:6px;font-size:10px}
+.helper{font-size:12px;color:var(--text3);margin-top:6px;font-weight:300;font-style:italic}
 input,textarea{width:100%;background:var(--form-input-bg);border:1px solid var(--form-input-border);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:400;padding:13px 15px;outline:none;margin-bottom:20px;transition:border-color .2s;resize:vertical;border-radius:2px}
 input::placeholder,textarea::placeholder{color:var(--text3)}
 input:focus,textarea:focus{border-color:var(--navy)}
@@ -83,17 +84,17 @@ textarea{min-height:90px;font-family:'DM Sans',sans-serif;line-height:1.5}
 .tom-text{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500;color:var(--text);line-height:1.45;font-style:italic}
 .sec{background:var(--white);border:1px solid var(--border);padding:28px 34px;margin-bottom:8px}
 .sec.gap{background:var(--gap-bg);border-style:dashed;border-color:var(--gap-border)}
-.shead{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.snum{width:18px;height:18px;background:var(--navy);color:var(--gold);font-size:9px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.slabel{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);font-weight:500}
-.stitle{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--text);margin-bottom:12px}
+.shead{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.snum{width:22px;height:22px;background:var(--navy);color:var(--gold);font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.slabel{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);font-weight:500}
+.stitle{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:500;color:var(--text);margin-bottom:14px;padding-bottom:6px;border-bottom:2px solid var(--gold);display:inline-block}
 .sec.gap .stitle{color:var(--gap-text)}
 .gap-msg{font-size:15px;color:var(--gap-text);line-height:1.65;font-weight:300;font-style:italic;padding:8px 0}
 .lifecycle{display:inline-block;font-size:12px;font-weight:500;color:var(--navy);background:var(--phase-bg);padding:5px 12px;border-radius:2px;letter-spacing:.04em;margin-top:6px}
 .angle{background:var(--navy);border-color:var(--navy)}
 .angle .snum{background:rgba(255,255,255,.1)}
-.angle .slabel{color:var(--nt3)}
-.angle .stitle{color:var(--gold)}
+.angle .slabel{color:var(--gold)}
+.angle .stitle{color:var(--gold);border-bottom-color:rgba(201,168,108,0.5)}
 .angle .blist li{border-bottom-color:rgba(255,255,255,0.1);color:var(--nt2)}
 .angle .blist li::before{background:var(--gold)}
 .fit-sec{background:var(--white);border:1px solid var(--border);padding:28px 34px;margin-bottom:8px}
@@ -110,7 +111,7 @@ textarea{min-height:90px;font-family:'DM Sans',sans-serif;line-height:1.5}
 .land-list li::before{content:'!';position:absolute;left:0;top:11px;width:16px;height:16px;background:var(--land-border);color:#fff;border-radius:50%;font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif}
 .phase{background:var(--phase-bg);border:1px solid rgba(43,58,107,0.25);padding:24px 32px;margin-bottom:8px}
 .phase .slabel{color:var(--navy)}
-.phase .stitle{color:var(--navy);font-size:18px;margin-bottom:8px}
+.phase .stitle{color:var(--navy);font-size:18px;margin-bottom:8px;border-bottom:none;padding-bottom:0;display:block}
 .phase-meta{font-size:13px;color:var(--text2);margin-bottom:16px}
 .phase-meta strong{color:var(--navy);font-weight:500}
 .phase-draft{background:var(--white);padding:16px 22px;border-left:2px solid var(--navy);font-size:15px;line-height:1.65;color:var(--text);font-weight:300;font-style:italic;margin-bottom:14px}
@@ -143,7 +144,7 @@ textarea{min-height:90px;font-family:'DM Sans',sans-serif;line-height:1.5}
 .phase-side .shead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .phase-side .snum{width:18px;height:18px;background:var(--navy);color:var(--gold);font-size:9px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .phase-side .slabel{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);font-weight:500}
-.phase-side .stitle{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;color:var(--navy);margin-bottom:8px;line-height:1.3}
+.phase-side .stitle{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;color:var(--navy);margin-bottom:8px;line-height:1.3;border-bottom:none;padding-bottom:0;display:block}
 .phase-side .phase-meta{font-size:12px;color:var(--text2);margin-bottom:14px}
 .phase-side .phase-meta strong{color:var(--navy);font-weight:500}
 .phase-side .phase-draft{background:var(--white);padding:14px 18px;border-left:2px solid var(--navy);font-size:14px;line-height:1.6;color:var(--text);font-weight:300;font-style:italic;margin-bottom:14px}
@@ -211,7 +212,8 @@ textarea{min-height:90px;font-family:'DM Sans',sans-serif;line-height:1.5}
     <input type="text" id="pname" placeholder="First and last name" autocomplete="off">
     <div id="linkedinWrap">
       <label class="label" for="purl">LinkedIn URL</label>
-      <input type="url" id="purl" placeholder="https://linkedin.com/in/..." autocomplete="off">
+      <input type="url" id="purl" placeholder="https://linkedin.com/in/firstname-lastname" autocomplete="off">
+      <div class="helper">Personal profile only — must contain "/in/"</div>
     </div>
     <label class="check-row" for="noli">
       <input type="checkbox" id="noli" onchange="onNoLinkedInChange()">
@@ -376,6 +378,30 @@ async function run(){
   if(!noLinkedIn && !url){showErr('Please enter a LinkedIn URL, or check "No LinkedIn" and provide context instead.');return;}
   if(noLinkedIn && !ctx){showErr('When no LinkedIn URL is provided, the context field is required so the brief has something to work with.');return;}
 
+  // LinkedIn URL validation + normalization
+  if(!noLinkedIn && url){
+    var normalized = url.trim();
+    if(!/^https?:\/\//i.test(normalized)) normalized = 'https://' + normalized;
+    if(!/linkedin\.com/i.test(normalized)){
+      showErr('That doesn\'t look like a LinkedIn URL. It should contain "linkedin.com".');return;
+    }
+    if(!/\/in\//i.test(normalized)){
+      showErr('That looks like a company or search URL, not a personal profile. The URL should contain "/in/" and look like linkedin.com/in/firstname-lastname. Make sure you\'re copying from the prospect\'s profile page.');return;
+    }
+    // Strip trailing sub-paths like /details/experience and trailing slashes
+    normalized = normalized.replace(/(linkedin\.com\/in\/[^\/\?#]+).*$/i, '$1');
+    url = normalized;
+    document.getElementById('purl').value = normalized;
+  }
+
+  // Per-browser rate limit: 20 briefs per day
+  var today = new Date().toISOString().slice(0,10);
+  var rlKey = 'rai_brief_count_' + today;
+  var todayCount = parseInt(localStorage.getItem(rlKey) || '0', 10);
+  if(todayCount >= 20){
+    showErr('You\'ve generated 20 briefs today. The daily limit resets at midnight. If you need more, message Chris directly.');return;
+  }
+
   clearErr();clearRefusal();clearOut();load(true);
 
   var userMsgLines = [
@@ -415,6 +441,8 @@ async function run(){
     } else {
       render(name, co, dt, brief, meetingContext, referrer, alreadyThanked);
     }
+    // Increment rate limit counter on successful generation
+    localStorage.setItem(rlKey, String(todayCount + 1));
   }catch(e){showErr('Error: '+e.message);}
   finally{load(false);}
 }
@@ -589,6 +617,19 @@ function reset(){
   onNoLinkedInChange();
   clearInterval(window._t);
 }
+
+// Clean up old rate-limit entries (keep only today)
+(function(){
+  try{
+    var today = new Date().toISOString().slice(0,10);
+    for(var i = localStorage.length - 1; i >= 0; i--){
+      var k = localStorage.key(i);
+      if(k && k.indexOf('rai_brief_count_') === 0 && k !== 'rai_brief_count_' + today){
+        localStorage.removeItem(k);
+      }
+    }
+  }catch(e){}
+})();
 </script>
 </body>
 </html>
